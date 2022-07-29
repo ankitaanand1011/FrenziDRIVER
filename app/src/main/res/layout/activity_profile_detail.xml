@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            >
+
+            <RelativeLayout
+                android:id="@+id/rl_header"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:orientation="horizontal"
+                android:background="@drawable/main_background">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/back"
+                    android:layout_centerVertical="true"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/tv_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Profile"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_header">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:paddingBottom="@dimen/_10sdp"
+
+                        >
+
+                        <RelativeLayout
+                            android:id="@+id/rl_image"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="@dimen/_100sdp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/et_bg_white">
+
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="@dimen/_15sdp"
+                                android:scaleType="fitXY"
+                                android:src="@mipmap/driver" />
+
+                            <ImageView
+                                android:id="@+id/iv_profile"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="@dimen/_5sdp"
+                                android:scaleType="fitXY" />
+
+                        </RelativeLayout>
+
+
+
+                        <ImageView
+                            android:id="@+id/iv_add_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/rl_image"
+                            android:layout_marginTop="-27dp"
+                            android:background="@drawable/circle_bg_white"
+                            android:padding="@dimen/_10sdp"
+                            android:scaleType="fitXY"
+                            android:layout_centerHorizontal="true"
+                            android:src="@mipmap/profile_camera"
+                            app:tint="@color/dark_pink" />
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_dir_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:gravity="start"
+                        android:text="Driver name"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <EditText
+                        android:id="@+id/et_dir_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/et_bg_white"
+                        android:gravity="start"
+                        android:padding="@dimen/_10sdp"
+                        android:hint="Driver name"
+
+                       android:textColorHint="@color/hint_color"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_dir_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="start"
+                        android:text="mobile no"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <EditText
+                        android:id="@+id/et_dir_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/et_bg_white"
+                        android:gravity="start"
+                        android:inputType="phone"
+
+                        android:fontFamily="@font/poppins_regular"
+                        android:padding="@dimen/_10sdp"
+                        android:hint="eg. 9574872433"
+                       android:textColorHint="@color/hint_color"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="start"
+                        android:text="Email "
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <EditText
+                        android:id="@+id/et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/et_bg_white"
+                        android:gravity="start"
+                        android:padding="@dimen/_10sdp"
+                        android:inputType="textEmailAddress"
+                        android:hint="eg. xxx@xxx.com"
+
+                       android:textColorHint="@color/hint_color"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_full_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="start"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="full address"
+
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <EditText
+                        android:id="@+id/et_full_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/et_bg_white"
+                        android:gravity="start"
+                        android:padding="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="Full Address"
+                       android:textColorHint="@color/hint_color"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="start"
+                        android:text="Postal Code"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <EditText
+                        android:id="@+id/et_post_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/et_bg_white"
+                        android:gravity="start"
+                        android:fontFamily="@font/poppins_regular"
+                        android:padding="@dimen/_10sdp"
+                        android:hint="eg.2434445"
+
+                       android:textColorHint="@color/hint_color"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_vehicle_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="start"
+                        android:text="vehicle Number"
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <EditText
+                        android:id="@+id/et_vehicle_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/et_bg_white"
+                        android:gravity="start"
+                        android:textColorHint="@color/hint_color"
+                        android:padding="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="eg. SAM 332"
+
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_vehicle_make"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="start"
+                        android:text="vehicle make"
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <EditText
+                        android:id="@+id/et_vehicle_make"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:background="@drawable/et_bg_white"
+                        android:gravity="start"
+                        android:textColorHint="@color/hint_color"
+                        android:padding="@dimen/_10sdp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="eg.  2022"
+
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="start"
+                        android:text="Select Vehicle Type"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp" />
+
+                    <RelativeLayout
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:id="@+id/rl_vehicle_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:padding="@dimen/_10sdp"
+                        android:background="@drawable/spinner_bg_pink"
+                        >
+
+                        <TextView
+                            android:id="@+id/tv_vehicle_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/poppins_regular"
+                            android:hint="eg. Vehicle Type"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/hint_color"
+                            android:textSize="@dimen/_14sdp"
+                            tools:ignore="SpUsage" />
+
+                        <ImageView
+                            android:id="@+id/iv_drop"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/down_r" />
+
+
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="License"
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/IndianRed"
+                        android:textSize="@dimen/_16sdp" />
+
+
+
+                    <RelativeLayout
+                        android:id="@+id/rl_license_image"
+                        android:layout_width="match_parent"
+                        android:padding="@dimen/_5sdp"
+                        android:background="@drawable/et_bg_white"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_height="@dimen/_150sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_centerInParent="true">
+
+                            <ImageView
+                                android:id="@+id/iv_license"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="fitCenter"
+                                android:src="@mipmap/driving_license" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Click to add Image"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textAllCaps="true"
+                                android:textColor="@color/IndianRed"
+                                android:textSize="@dimen/_12sdp" />
+
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/tv_license"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="license number"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <EditText
+                            android:id="@+id/et_license"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@drawable/et_bg_white"
+                            android:gravity="start"
+
+                           android:textColorHint="@color/hint_color"
+                            android:fontFamily="@font/poppins_regular"
+                            android:padding="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:hint="eg. 134246768"
+
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/tv_license_expiry"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="license expiry"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <EditText
+                            android:id="@+id/et_license_expiry"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@drawable/et_bg_white"
+                            android:gravity="start"
+                            android:textColorHint="@color/hint_color"
+                            android:inputType="date"
+                            android:fontFamily="@font/poppins_regular"
+                            android:padding="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:hint="eg. 12/02/2022"
+
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Insurance"
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/IndianRed"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_insurance_image"
+                        android:layout_width="match_parent"
+                        android:padding="@dimen/_5sdp"
+                        android:background="@drawable/et_bg_white"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_height="@dimen/_150sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_centerInParent="true">
+
+                            <ImageView
+                                android:id="@+id/iv_insurance"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="fitCenter"
+                                android:src="@mipmap/driving_license" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Click to add Image"
+                                
+                                android:textAllCaps="true"
+                                android:fontFamily="@font/poppins_regular"
+                                android:textColor="@color/IndianRed"
+                                android:textSize="@dimen/_12sdp" />
+
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/tv_insurance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="insurance number"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <EditText
+                            android:id="@+id/et_insurance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@drawable/et_bg_white"
+                            android:gravity="start"
+                           android:textColorHint="@color/hint_color"
+                            android:fontFamily="@font/poppins_regular"
+                            android:padding="@dimen/_10sdp"
+                            android:hint="eg.435465473645"
+
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="Convictions"
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/IndianRed"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="conviction points"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <EditText
+                            android:id="@+id/et_conviction_points"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@drawable/et_bg_white"
+                            android:gravity="start"
+                            android:inputType="number"
+                           android:textColorHint="@color/hint_color"
+                            android:fontFamily="@font/poppins_regular"
+                            android:padding="@dimen/_10sdp"
+                            android:hint="eg. 5"
+
+
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="vertical">
+
+
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="conviction points reason"
+                            android:textAllCaps="true"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_9sdp" />
+
+                        <EditText
+                            android:id="@+id/et_conviction_p_reason"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_80sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@drawable/et_bg_white"
+                            android:gravity="start"
+                            android:textColorHint="@color/hint_color"
+                            android:fontFamily="@font/poppins_regular"
+                            android:hint="Reason for conviction"
+                            android:padding="@dimen/_10sdp"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_save"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:layout_marginBottom="@dimen/_30sdp"
+                        android:background="@drawable/main_background"
+                        android:gravity="center"
+                        android:padding="@dimen/_10sdp"
+                        android:text="save"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </ScrollView>
+
+
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

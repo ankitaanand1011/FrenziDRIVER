@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".RatingActivity">
+
+    <RelativeLayout
+        android:id="@+id/rate"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="25dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp">
+
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:foreground="?android:selectableItemBackground"
+                android:layout_width="20dp"
+                android:layout_height="22dp"
+                android:layout_centerVertical="true"
+
+                android:background="@drawable/left_ar" />
+        </RelativeLayout>
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Rate customer"
+            android:textColor="@color/MidnightBlue"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:layout_centerInParent="true"
+
+        android:background="@color/white">
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/rating"-->
+        <!--            android:layout_width="150dp"-->
+        <!--            android:layout_height="150dp"-->
+        <!--            android:layout_centerHorizontal="true"-->
+        <!--            android:background="@drawable/star_bg"-->
+
+        <!--            />-->
+        <LinearLayout
+            android:id="@+id/profile"
+            android:layout_width="160dp"
+            android:layout_height="165dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/starcircle"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:background="@drawable/profile" />
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/moni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Monica G."
+            android:textColor="@color/MidnightBlue"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/thank"
+            android:layout_below="@+id/moni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Thank You monica!"
+            android:textColor="@color/MidnightBlue"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/riding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/thank"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="5dp"
+            android:text="for riding with us."
+            android:textColor="@color/Gray"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_below="@+id/riding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:paddingRight="25dp"
+            android:paddingLeft="25dp"
+            android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/rounded_rectangle"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RatingBar
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!--            <ImageView-->
+            <!--                android:layout_width="30dp"-->
+            <!--                android:layout_height="30dp"-->
+            <!--                android:background="@drawable/star_w"-->
+            <!--                android:backgroundTint="@color/dark_pink" />-->
+
+            <!--            <ImageView-->
+            <!--                android:layout_width="30dp"-->
+            <!--                android:layout_height="30dp"-->
+            <!--                android:background="@drawable/star_w"-->
+            <!--                android:backgroundTint="@color/dark_pink" />-->
+
+            <!--            <ImageView-->
+            <!--                android:layout_width="30dp"-->
+            <!--                android:layout_height="30dp"-->
+            <!--                android:background="@drawable/star_w"-->
+            <!--                android:backgroundTint="@color/dark_pink" />-->
+
+            <!--            <ImageView-->
+            <!--                android:layout_width="30dp"-->
+            <!--                android:layout_height="30dp"-->
+            <!--                android:background="@drawable/star_w"-->
+            <!--                android:backgroundTint="@color/gradient" />-->
+
+            <!--            <ImageView-->
+            <!--                android:layout_width="30dp"-->
+            <!--                android:layout_height="30dp"-->
+            <!--                android:background="@drawable/star_w"-->
+            <!--                android:backgroundTint="@color/OrangeRed" />-->
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_rating_submit"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/MidnightBlue"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Submit"
+        android:foreground="@drawable/btn_rect_ripple_effectwhite"
+        android:textColor="@color/white"
+        android:textSize="13sp" />
+
+</RelativeLayout>

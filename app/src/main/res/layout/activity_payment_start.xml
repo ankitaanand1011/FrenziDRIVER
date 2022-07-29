@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaymentStartActivity"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/number_pick"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="30dp">
+
+        <RelativeLayout
+            android:layout_width="25dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp">
+
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:foreground="?android:selectableItemBackground"
+                android:layout_width="20dp"
+                android:layout_height="22dp"
+                android:layout_centerInParent="true"
+
+                android:background="@drawable/left_ar" />
+        </RelativeLayout>
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Pickup"
+            android:textColor="@color/MidnightBlue"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/number_pick"
+        >
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="0dp"
+            map:uiCompass="true"
+            map:uiRotateGestures="true"
+            map:uiScrollGestures="false"
+            map:uiTiltGestures="true"
+            map:uiZoomControls="true"
+            map:uiZoomGestures="true"
+            tools:context=".MapScreen" />
+
+        <RelativeLayout
+            android:id="@+id/distance"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/rectangle_curve_midnight_blue">
+
+            <ImageView
+                android:id="@+id/maplocal"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/map_loca2" />
+
+            <TextView
+                android:id="@+id/km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@id/maplocal"
+                android:fontFamily="@font/poppins_medium"
+                android:text="0 km"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/km"
+                android:layout_toRightOf="@id/maplocal"
+                android:text="Turn right at 96 Abingdon Road,NR9 1DB"
+                android:textColor="@color/LightGrey"
+                android:textSize="12sp"
+
+                />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/buttompannelcurvedbg"
+            android:elevation="20dp"
+            android:orientation="vertical"
+            app:behavior_hideable="true"
+            app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+            <View
+                android:layout_width="100dp"
+                android:layout_height="1dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:background="#B8B6B6" />
+
+            <TextView
+                android:id="@+id/client"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Client goes out"
+                android:textColor="@color/MidnightBlue"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/viewc_client"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/client"
+                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/LightGrey" />
+
+            <RelativeLayout
+                android:id="@+id/call_r"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@id/viewc_client">
+
+
+                <ImageView
+                    android:id="@+id/call_new"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/call_r"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:id="@+id/card"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@drawable/stripe"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toRightOf="@id/card"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Payment By Stripe"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+
+                        />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/msg"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/chat_1"
+
+                    />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/viewc_payment"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/call_r"
+                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/LightGrey" />
+
+            <Button
+                android:id="@+id/start_pay"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_below="@id/viewc_payment"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/MidnightBlue"
+                android:foreground="@drawable/btn_rect_ripple_effectwhite"
+                android:text="Start"
+                android:textColor="@color/White"
+                android:textSize="16sp" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

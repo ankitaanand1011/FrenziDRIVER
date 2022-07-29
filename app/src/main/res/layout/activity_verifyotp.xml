@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background"
+    >
+
+
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:foreground="?android:selectableItemBackground"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/left_arrow_white" />
+
+    <TextView
+        android:id="@+id/vn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="26dp"
+        android:layout_toRightOf="@id/btn_back"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Verify Number"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/vn"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/rectangle_white_curved">
+
+        <ImageView
+            android:id="@+id/mobile"
+            android:layout_width="80dp"
+            android:layout_height="90dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/phone_pass" />
+
+        <TextView
+            android:id="@+id/vyn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mobile"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Verify your Code "
+            android:textColor="@color/MidnightBlue"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/vyn"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/Gray"
+            android:gravity="center"
+            android:text="A verification code has been sent to\nthe customer registered mobile number"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/code"
+            android:layout_centerHorizontal="true"
+            android:text="registered mobile number"
+            android:visibility="gone"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/entercode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/register"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Enter the code here"
+            android:textColor="@color/DarkGray"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/uniquecode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/entercode"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/onecode"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:hint="*"
+                android:maxEms="1"
+                android:maxLines="1"
+                android:inputType="number"
+                android:maxLength="1"
+                android:focusable="true"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+
+            <EditText
+                android:id="@+id/twocode"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="*"
+                android:inputType="number"
+                android:maxEms="1"
+                android:maxLines="1"
+                android:maxLength="1"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/three_code"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:maxEms="1"
+                android:maxLines="1"
+                android:maxLength="1"
+                android:hint="*"
+                android:inputType="number"
+                android:textColor="@color/Gray"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/forth_code"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:hint="*"
+                android:inputType="number"
+                android:maxEms="1"
+                android:maxLines="1"
+                android:maxLength="1"
+                android:textColor="@color/Gray"
+                android:textSize="25sp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/resend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/uniquecode"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Resend code"
+            android:textColor="@color/MidnightBlue"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/main_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/resend"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:weightSum="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="2.24">
+
+                <Button
+                    android:id="@+id/btn_verify"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:backgroundTint="@color/MidnightBlue"
+                    android:elevation="5dp"
+                    android:stateListAnimator="@null"
+                    android:text="Verify and Start Ride"
+                    android:textColor="@color/White"
+                    android:translationZ="5dp" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
