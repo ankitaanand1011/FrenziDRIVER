@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +25,24 @@ import com.example.driverfrenzi.JobDetailsActivity;
 import com.example.driverfrenzi.JobRequestActivity;
 import com.example.driverfrenzi.ProfileDetailActivity;
 import com.example.driverfrenzi.R;
+import com.example.driverfrenzi.api.RestClient;
 import com.example.driverfrenzi.responce.ResponseFetchRideHistory;
+import com.example.driverfrenzi.responce.ResponseJobDetails;
 import com.example.driverfrenzi.responce.ResponseJobList;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import cc.cloudist.acplibrary.ACProgressConstant;
+import cc.cloudist.acplibrary.ACProgressFlower;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AdapterJobRequest extends RecyclerView.Adapter<AdapterJobRequest.MyViewHolder> {
 
@@ -52,7 +66,7 @@ public class AdapterJobRequest extends RecyclerView.Adapter<AdapterJobRequest.My
     double current_lat, current_long;
     private Fragment callingFragment;
     int index = -1;
-
+    String ride_id;
 
     public interface OnItemClickListener {
         void onItemClick(ResponseJobList.Response item);
@@ -61,14 +75,14 @@ public class AdapterJobRequest extends RecyclerView.Adapter<AdapterJobRequest.My
 
     public AdapterJobRequest(Activity activity, Context mContext,
                              List<ResponseJobList.Response> rideHistoryList,
-                             double current_lat,double current_long,
+                           //  double current_lat,double current_long,
                              OnItemClickListener listener ) {
         this.activity = activity;
         this.rideHistoryList = rideHistoryList;
         this.listener = listener;
         this.mContext = mContext;
-        this.current_lat = current_lat;
-        this.current_long = current_long;
+    /*    this.current_lat = current_lat;
+        this.current_long = current_long;*/
 
 
     }
@@ -106,12 +120,8 @@ public class AdapterJobRequest extends RecyclerView.Adapter<AdapterJobRequest.My
         holder.tv_accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String ride_id = String.valueOf(rideHistoryList.get(position).getRide_id());
-                Intent acc=new Intent(mContext, JobDetailsActivity.class);
-                acc.putExtra("ride_id",ride_id);
-                acc.putExtra("current_lat",current_lat);
-                acc.putExtra("current_long",current_long);
-                activity.startActivity(acc);
+                listener.onItemClick(rideHistoryList.get(position));
+
 
             }
         });
@@ -198,4 +208,6 @@ public class AdapterJobRequest extends RecyclerView.Adapter<AdapterJobRequest.My
 
 
     }
+
+
 }

@@ -17,6 +17,8 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,12 +37,15 @@ import com.example.driverfrenzi.adapter.AdapterJobRequest;
 import com.example.driverfrenzi.adapter.AdapterRideHistory;
 import com.example.driverfrenzi.api.RestClient;
 import com.example.driverfrenzi.responce.ResponseFetchRideHistory;
+import com.example.driverfrenzi.responce.ResponseJobDetails;
 import com.example.driverfrenzi.responce.ResponseJobList;
 import com.github.angads25.toggle.interfaces.OnToggledListener;
 import com.github.angads25.toggle.model.ToggleableView;
 import com.github.angads25.toggle.widget.LabeledSwitch;
+import com.google.firebase.firestore.GeoPoint;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -67,6 +72,8 @@ public class JobRequestActivity extends AppCompatActivity {
     String driver_Name, driver_Image,driver_id;
     private final List<ResponseJobList.Response> JobList = new ArrayList<>();
     double current_lat, current_long;
+    String rideId;
+    String pickup_lat, pickup_long, drop_lat, drop_long;
 
     @Override
     protected void onPause() {
@@ -105,11 +112,17 @@ public class JobRequestActivity extends AppCompatActivity {
 
 
         adapterJobRequest =new AdapterJobRequest(JobRequestActivity.this,
-                getApplicationContext(), JobList, current_lat,current_long,
+                getApplicationContext(), JobList,
                 new AdapterJobRequest.OnItemClickListener() {
             @Override
             public void onItemClick(ResponseJobList.Response item) {
                 Log.e(TAG, "onItemClick:aDAPTER "+item );
+                rideId = String.valueOf(item.getRide_id());
+                Log.e(TAG, "onItemClick: rideId >> "+rideId );
+                getLocationFromAddress1(item.getPickup_address());
+                getLocationFromAddress2(item.getDrop_address());
+                AcceptRide();
+
 
             }
         });
@@ -204,7 +217,114 @@ public class JobRequestActivity extends AppCompatActivity {
         });
     }
 
+    private void AcceptRide() {
+        ACProgressFlower dialog = new ACProgressFlower.Builder(this)
+                .direction(ACProgressConstant.DIRECT_CLOCKWISE)
+                .themeColor(R.color.ForestGreen)
+                .fadeColor(Color.WHITE).build();
+        dialog.setCancelable(false);
+        dialog.show();
 
+
+
+
+
+        RequestBody RideID = RequestBody.create(MediaType.parse("text/plain"), rideId);
+        RequestBody post_driver_id = RequestBody.create(MediaType.parse("text/plain"), driver_id);
+        RequestBody post_latitude = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(current_lat));
+        RequestBody post_longitude = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(current_long));
+
+        RestClient.getClient().AcceptRide(RideID,post_driver_id,
+                post_latitude,post_longitude)
+                .enqueue(new Callback<ResponseJobDetails>() {
+            @Override
+            public void onResponse(Call<ResponseJobDetails> call, Response<ResponseJobDetails> response) {
+                Log.e(TAG, "onResponse 2 : " + response.code());
+                Log.e(TAG, "onResponse 2: " + response.isSuccessful());
+                // ppDialog.dismiss();
+                assert response.body() != null;
+                if (response.body().getStatus().equals(200)) {
+                    dialog.dismiss();
+
+                    ResponseJobDetails listResponse = response.body();
+
+                Intent acc=new Intent(JobRequestActivity.this, JobDetailsActivity.class);
+                acc.putExtra("ride_id",rideId);
+                   acc.putExtra("current_lat",current_lat);
+                  acc.putExtra("current_long",current_long);
+                activity.startActivity(acc);
+
+                } else  {
+
+                    dialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseJobDetails> call, Throwable t) {
+                Log.e(TAG, "onFailure 2: " + t.getMessage());
+                dialog.dismiss();
+            }
+        });
+    }
+
+    public GeoPoint getLocationFromAddress1(String strAddress) {
+
+        Geocoder coder = new Geocoder(this);
+        List<Address> address;
+        GeoPoint p1 = null;
+
+        try {
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+            Address location = address.get(0);
+            location.getLatitude();
+            location.getLongitude();
+            pickup_lat =  String.valueOf(location.getLatitude());
+            pickup_long =  String.valueOf(location.getLongitude());
+
+            Log.e(TAG, "onClick:pickup_lat>   "+pickup_lat );
+            Log.e(TAG, "onClick:pickup_long>   "+pickup_long );
+
+            // p1 = new GeoPoint((double) (location.getLatitude() * 1E6),
+            //    (double) (location.getLongitude() * 1E6));
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public GeoPoint getLocationFromAddress2(String strAddress) {
+
+        Geocoder coder = new Geocoder(this);
+        List<Address> address;
+        GeoPoint p1 = null;
+
+        try {
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+            Address location = address.get(0);
+            location.getLatitude();
+            location.getLongitude();
+            drop_lat =  String.valueOf(location.getLatitude());
+            drop_long =  String.valueOf(location.getLongitude());
+            Log.e(TAG, "onClick:drop_lat>   "+drop_lat );
+            Log.e(TAG, "onClick:drop_long>   "+drop_long );
+
+            // p1 = new GeoPoint((double) (location.getLatitude() * 1E6),
+            //    (double) (location.getLongitude() * 1E6));
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
 

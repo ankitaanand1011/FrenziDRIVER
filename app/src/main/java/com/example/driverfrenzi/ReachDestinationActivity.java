@@ -8,6 +8,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,6 +20,7 @@ import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -26,7 +28,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.driverfrenzi.api.RestClient;
+import com.example.driverfrenzi.responce.ResponseStartRide;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdate;
@@ -40,10 +46,18 @@ import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import cc.cloudist.acplibrary.ACProgressConstant;
+import cc.cloudist.acplibrary.ACProgressFlower;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ReachDestinationActivity extends AppCompatActivity  implements OnMapReadyCallback,
         GoogleApiClient.OnConnectionFailedListener {
 
-
+    private static final String TAG = "ReachDestinationActivity";
     Button btn_finish_trip;
     ImageView btn_back;
     AlertDialog alertDialog;
@@ -53,6 +67,8 @@ public class ReachDestinationActivity extends AppCompatActivity  implements OnMa
     private GoogleMap mMap;
     private final static int LOCATION_REQUEST_CODE = 23;
     boolean locationPermission = false;
+    String ride_id,amount;
+    TextView tv_amount;
 
 
     @Override
@@ -72,8 +88,12 @@ public class ReachDestinationActivity extends AppCompatActivity  implements OnMa
         mapFragment.getMapAsync(this);
         a = new LatLng(53.801277, -1.548567);
 
+        ride_id = getIntent().getStringExtra("ride_id");
+        amount = getIntent().getStringExtra("amount");
+
         btn_back=findViewById(R.id.btn_back);
         btn_finish_trip=findViewById(R.id.btn_finish_trip);
+        tv_amount=findViewById(R.id.tv_amount);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,7 +103,9 @@ public class ReachDestinationActivity extends AppCompatActivity  implements OnMa
         btn_finish_trip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                popUp();
+
+
+                ride_finish();
             }
         });
 
@@ -97,7 +119,7 @@ public class ReachDestinationActivity extends AppCompatActivity  implements OnMa
         }
 
     }
-    private void popUp() {
+    private void popUp(String amount, String user_id, String driver_id) {
 
         // get prompts.xml view
         LayoutInflater li = LayoutInflater.from(this);
@@ -106,54 +128,32 @@ public class ReachDestinationActivity extends AppCompatActivity  implements OnMa
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this
         );
 
-        Button btn_cancel =promptsView.findViewById(R.id.btn_cancel);
+    //    Button btn_cancel =promptsView.findViewById(R.id.btn_cancel);
         Button btn_done =promptsView.findViewById(R.id.btn_done);
+        TextView tv_price =promptsView.findViewById(R.id.tv_price);
 
 
 
-//        TextView txt_cancel = (TextView) promptsView.findViewById(R.id.txt_cancel);
+        tv_price.setText("£"+amount);
 
 
         // set prompts.xml to alertdialog builder
         alertDialogBuilder.setView(promptsView);
 
-//        radio_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-//                View radioButton = radio_group.findViewById(i);
-//                int index = radio_group.indexOfChild(radioButton);
-//
-//                // Add logic here
-//
-//                switch (index) {
-//                    case 0: // first button
-//
-////                        Toast.makeText(getApplicationContext(), "Selected button number " +index ,Toast.LENGTH_LONG).show();
-//                        break;
-//                    case 1: // secondbutton
-//
-////                        Toast.makeText(getApplicationContext(), "Selected button numbers "+index,Toast.LENGTH_LONG).show();
-//                        break;
-//                }
-//            }
-//        });
-
-
-        btn_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent in=new Intent(ReachDestinationActivity.this,RatingActivity.class);
-                startActivity(in);
-                finish();
-            }
-        });
 
 
 
         btn_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(ReachDestinationActivity.this,RideActivity.class);
+                alertDialog.dismiss();
+              //  Intent in=new Intent(ReachDestinationActivity.this,RideActivity.class);
+                Intent in=new Intent(ReachDestinationActivity.this,
+                        RatingActivity.class);
+                in.putExtra("ride_id",ride_id);
+                in.putExtra("user_id",user_id);
+                in.putExtra("driver_id",driver_id);
+
                 startActivity(in);
                 finish();
 
@@ -168,6 +168,63 @@ public class ReachDestinationActivity extends AppCompatActivity  implements OnMa
         // show it
         alertDialog.show();
     }
+
+    private void ride_finish( ) {
+
+        ACProgressFlower dialog = new ACProgressFlower.Builder(ReachDestinationActivity.this)
+                .direction(ACProgressConstant.DIRECT_CLOCKWISE)
+                .themeColor(Color.WHITE)
+                .fadeColor(Color.BLACK).build();
+        dialog.show();
+
+        RequestBody rideId = RequestBody.create(MediaType.parse("txt/plain"), ride_id);
+        RequestBody payment_status = RequestBody.create(MediaType.parse("txt/plain"), "done");
+
+
+        RestClient.getClient().FinishRide(rideId,payment_status).enqueue(new Callback<ResponseStartRide>() {
+            @SuppressLint("LongLogTag")
+            @Override
+            public void onResponse(Call<ResponseStartRide> call, Response<ResponseStartRide> response) {
+                Log.e(TAG, "onResponse: Code :" + response.body());
+                Log.e(TAG, "onResponse: " + response.code());
+                Log.e(TAG, "onResponse: " + response.message());
+                Log.e(TAG, "onResponse: " + response.errorBody());
+                if (response.body().getStatus().equals(401)) {
+                    dialog.dismiss();
+
+                    String amount = String.valueOf(response.body().getResponse().getAmount());
+                    String user_id = String.valueOf(response.body().getResponse().getUserId());
+                    String driver_id = String.valueOf(response.body().getResponse().getDriverId());
+
+                    tv_amount.setText("£"+amount);
+                    popUp(amount,user_id,driver_id);
+                   /* Toast.makeText(ReachDestinationActivity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    Intent in=new Intent(ReachDestinationActivity.this,RatingActivity.class);
+                    startActivity(in);
+                    finish();*/
+
+
+                }else{
+                    dialog.dismiss();
+//                        Toast.makeText(MainActivity.this,"Wrong username or password !!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ReachDestinationActivity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseStartRide> call, Throwable t) {
+                Toast.makeText(ReachDestinationActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+
+
+
+    }
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

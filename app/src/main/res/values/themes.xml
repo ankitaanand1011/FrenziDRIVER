@@ -22,4 +22,10 @@
         <item name="android:windowEnterAnimation">@anim/in_bottom_to_top</item>
         <item name="android:windowExitAnimation">@anim/out_bottom_to_top</item>
     </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/Gray</item>
+        <item name="colorControlActivated">@color/yellow</item>
+    </style>
+
 </resources>

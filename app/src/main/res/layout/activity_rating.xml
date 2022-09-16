@@ -8,14 +8,15 @@
     tools:context=".RatingActivity">
 
     <RelativeLayout
-        android:id="@+id/rate"
+        android:id="@+id/rl_heading"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:background="@color/white">
 
         <RelativeLayout
             android:layout_width="25dp"
             android:layout_height="60dp"
+            android:layout_alignParentTop="true"
             android:layout_marginLeft="20dp">
 
 
@@ -40,144 +41,161 @@
             android:textSize="18sp" />
 
     </RelativeLayout>
-
-    <RelativeLayout
+    <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="380dp"
-        android:layout_centerInParent="true"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/rl_heading"
+        android:background="@color/fade"/>
 
-        android:background="@color/white">
-
-        <!--        <ImageView-->
-        <!--            android:id="@+id/rating"-->
-        <!--            android:layout_width="150dp"-->
-        <!--            android:layout_height="150dp"-->
-        <!--            android:layout_centerHorizontal="true"-->
-        <!--            android:background="@drawable/star_bg"-->
-
-        <!--            />-->
-        <LinearLayout
-            android:id="@+id/profile"
-            android:layout_width="160dp"
-            android:layout_height="165dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/starcircle"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_gravity="center"
-                android:background="@drawable/profile" />
-        </LinearLayout>
-
-
-
-        <TextView
-            android:id="@+id/moni"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/profile"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Monica G."
-            android:textColor="@color/MidnightBlue"
-            android:textSize="19sp" />
-
-        <TextView
-            android:id="@+id/thank"
-            android:layout_below="@+id/moni"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Thank You monica!"
-            android:textColor="@color/MidnightBlue"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/riding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/thank"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="5dp"
-            android:text="for riding with us."
-            android:textColor="@color/Gray"
-            android:textSize="14sp" />
-
-        <LinearLayout
-            android:layout_below="@+id/riding"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:paddingRight="25dp"
-            android:paddingLeft="25dp"
-            android:paddingBottom="7dp"
-            android:paddingTop="7dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/rounded_rectangle"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <RatingBar
-                android:id="@+id/rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <!--            <ImageView-->
-            <!--                android:layout_width="30dp"-->
-            <!--                android:layout_height="30dp"-->
-            <!--                android:background="@drawable/star_w"-->
-            <!--                android:backgroundTint="@color/dark_pink" />-->
-
-            <!--            <ImageView-->
-            <!--                android:layout_width="30dp"-->
-            <!--                android:layout_height="30dp"-->
-            <!--                android:background="@drawable/star_w"-->
-            <!--                android:backgroundTint="@color/dark_pink" />-->
-
-            <!--            <ImageView-->
-            <!--                android:layout_width="30dp"-->
-            <!--                android:layout_height="30dp"-->
-            <!--                android:background="@drawable/star_w"-->
-            <!--                android:backgroundTint="@color/dark_pink" />-->
-
-            <!--            <ImageView-->
-            <!--                android:layout_width="30dp"-->
-            <!--                android:layout_height="30dp"-->
-            <!--                android:background="@drawable/star_w"-->
-            <!--                android:backgroundTint="@color/gradient" />-->
-
-            <!--            <ImageView-->
-            <!--                android:layout_width="30dp"-->
-            <!--                android:layout_height="30dp"-->
-            <!--                android:background="@drawable/star_w"-->
-            <!--                android:backgroundTint="@color/OrangeRed" />-->
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/btn_rating_submit"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/MidnightBlue"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Submit"
-        android:foreground="@drawable/btn_rect_ripple_effectwhite"
-        android:textColor="@color/white"
-        android:textSize="13sp" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@+id/view">
+
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+
+
+            <LinearLayout
+                android:id="@+id/rl_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/profile"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="@dimen/_150sdp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/starcircle"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/profile" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/moni"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Monica G."
+                    android:visibility="gone"
+                    android:textColor="@color/MidnightBlue"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:id="@+id/tv_thank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Thank You monica!"
+                    android:textColor="@color/very_dark_pink"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/tv_riding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginTop="5dp"
+                    android:text="for riding with us."
+                    android:textColor="@color/Gray"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_rating"
+                    android:layout_below="@+id/riding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <RatingBar
+                        android:id="@+id/rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:stepSize="1"
+                        android:theme="@style/RatingBar"/>
+                    <EditText
+                        android:id="@+id/edt_reviews"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_80sdp"
+                        android:hint="Add your reviews"
+                        android:padding="@dimen/_10sdp"
+                        android:textSize="@dimen/_14sdp"
+                        android:gravity="start"
+                        android:textColorHint="@color/hint_color"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:background="@drawable/et_bg_white"
+
+                        />
+
+
+
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/btn_rating_submit"
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/MidnightBlue"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_regular"
+                    android:foreground="@drawable/btn_rect_ripple_effectwhite"
+                    android:text="Submit"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/tv_skip"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:padding="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="skip"
+                    android:textAllCaps="true"
+                    android:textColor="@color/MidnightBlue"
+                    android:textSize="@dimen/_14sdp" />
+
+
+            </LinearLayout>
+
+
+
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
+
 
 </RelativeLayout>

@@ -78,20 +78,21 @@
         android:gravity="center">
 
         <TextView
+            android:id="@+id/tv_date_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="29th Jun 21-9:45 am"
             android:textColor="@color/white"
             android:textSize="11sp" />
 
 
         <TextView
+            android:id="@+id/tv_distance_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
-            android:text="7.32 km | 35 min"
+
             android:textColor="@color/white"
             android:textSize="11sp" />
 
@@ -164,22 +165,23 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_pickup_add_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Wallsend"
+
                         android:textColor="@color/MidnightBlue"
                         android:textSize="13sp" />
 
                     <TextView
+                        android:id="@+id/tv_pickup_add_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="New castle upon Tyne, NE2 8EL"
                         android:textColor="@color/Gray"
                         android:textSize="11sp" />
 
@@ -190,6 +192,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/poppins_regular"
                         android:text="9:45 am"
+                        android:visibility="gone"
                         android:textColor="@color/MidnightBlue"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -200,26 +203,27 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_drop_add_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Bilayat UK Ltd"
                         android:textColor="@color/MidnightBlue"
                         android:textSize="13sp" />
 
                     <TextView
+                        android:id="@+id/tv_drop_add_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="225 Clarendon Rd, Manchester"
                         android:textColor="@color/Gray"
                         android:textSize="11sp" />
 
                     <TextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -227,6 +231,7 @@
                         android:layout_marginRight="10dp"
                         android:fontFamily="@font/poppins_semibold"
                         android:text="10:20 am"
+                        android:visibility="gone"
                         android:textColor="@color/MidnightBlue"
                         android:textSize="11sp" />
                 </LinearLayout>

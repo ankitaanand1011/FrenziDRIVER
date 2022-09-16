@@ -35,7 +35,7 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Pickup"
+            android:text="Drop"
             android:textColor="@color/MidnightBlue"
             android:textSize="18sp" />
 
@@ -95,69 +95,83 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_250sdp"
+        android:layout_height="@dimen/_300sdp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/buttompannelcurvedbg"
         android:elevation="20dp"
+        android:padding="@dimen/_10sdp"
         android:orientation="vertical"
         app:behavior_hideable="true"
         app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
+        <View
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="#B8B6B6" />
+
         <LinearLayout
-            android:id="@+id/monicaone"
             android:layout_width="match_parent"
-            android:layout_height="85dp"
-            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/curve_page_one"
             android:backgroundTint="@color/white"
-            android:padding="8dp">
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="11dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/profile" />
-
-            <LinearLayout
-                android:layout_width="0dp"
+            android:padding="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="7dp"
-                android:layout_weight="2"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:layout_margin="@dimen/_10sdp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                   android:id="@+id/civ_customer_img"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_gravity="center_vertical"
+                   android:layout_marginEnd="@dimen/_5sdp"
+                    android:src="@drawable/profile" />
+
+                <LinearLayout
+                    android:layout_toEndOf="@+id/civ_customer_img"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="Pickup at"
-                    android:textColor="@color/MidnightBlue"
-                    android:textSize="15sp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="Pickup at"
+                        android:textColor="@color/MidnightBlue"
+                        android:textSize="15sp" />
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Wallsend"
-                    android:textColor="@color/Gray"
-                    android:textSize="11sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Wallsend"
+                        android:textColor="@color/Gray"
+                        android:textSize="@dimen/_12sdp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Newcastle upon Tyne, NE28 8EL"
-                    android:textColor="@color/Gray"
-                    android:textSize="11sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Newcastle upon Tyne, NE28 8EL"
+                        android:textColor="@color/Gray"
+                        android:textSize="@dimen/_12sdp" />
 
-            </LinearLayout>
+                </LinearLayout>
+                
+                
+            </RelativeLayout>
+
 
 
         </LinearLayout>
@@ -167,126 +181,140 @@
             android:id="@+id/view_pick"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/monicaone"
             android:background="@color/LightGrey" />
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/edf"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_below="@id/view_pick"
-            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/_10sdp"
             android:gravity="center">
 
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:layout_weight="1"
                 android:layout_gravity="center"
-                android:layout_marginLeft="50dp">
+              >
 
-                <TextView
-                    android:id="@+id/est"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="6dp"
-                    android:paddingBottom="6dp"
-                    android:text="EST"
-                    android:textColor="@color/Gray"
-                    android:textSize="12sp" />
+                    android:layout_centerInParent="true">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/est"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="25min"
-                    android:textColor="@color/MidnightBlue"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/est"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:text="EST"
+                        android:textColor="@color/Gray"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/est"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="25min"
+                        android:textColor="@color/MidnightBlue"
+                        android:textSize="14sp" />
+
+
+                </RelativeLayout>
+
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_centerInParent="true"
+                android:layout_weight="1"
                 android:layout_gravity="center">
 
-                <TextView
-                    android:id="@+id/distan"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="6dp"
-                    android:paddingBottom="6dp"
-                    android:text="Distance"
-                    android:textColor="@color/Gray"
-                    android:textSize="12sp" />
+                    android:layout_centerInParent="true">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/distan"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="11.9km"
-                    android:textColor="@color/MidnightBlue"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/distan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_vertical"
+                        android:text="Distance"
+                        android:textColor="@color/Gray"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/distan"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="11.9km"
+                        android:textColor="@color/MidnightBlue"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
+                android:layout_weight="1"
                 android:layout_gravity="center"
-                android:layout_marginRight="50dp">
-
-                <TextView
-                    android:id="@+id/fare"
-                    android:layout_width="wrap_content"
+               >
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="6dp"
-                    android:paddingBottom="6dp"
-                    android:text="Fare"
-                    android:textColor="@color/Gray"
-                    android:textSize="12sp" />
+                    android:layout_centerInParent="true">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/fare"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/poppins_bold"
-                    android:text="£ 25.00"
-                    android:textColor="@color/MidnightBlue"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/fare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_vertical"
+
+                        android:text="Fare"
+                        android:textColor="@color/Gray"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/fare"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/poppins_bold"
+
+                        android:text="£ 25.00"
+                        android:textColor="@color/MidnightBlue"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
             </RelativeLayout>
 
 
-        </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+
+            android:background="@color/LightGrey" />
 
         <RelativeLayout
             android:id="@+id/pay_card"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_below="@id/edf"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
             android:gravity="center"
             >
 
@@ -294,16 +322,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="Payment by Credit card"
+                android:text="Payment by Stripe"
                 android:textColor="@color/Gray"
-                android:textSize="13sp" />
+                android:textSize="@dimen/_14sdp" />
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/card" />
+                android:background="@drawable/stripe" />
 
 
         </RelativeLayout>
@@ -312,47 +340,27 @@
             android:id="@+id/view_card"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/pay_card"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+
             android:background="@color/LightGrey" />
 
-        <Button
+        <TextView
             android:id="@+id/drop_button"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@id/view_card"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/MidnightBlue"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg_blue"
             android:fontFamily="@font/poppins_bold"
             android:text="Drop off"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textAllCaps="true"
+            android:gravity="center"
+            android:padding="@dimen/_5sdp"
             android:foreground="@drawable/btn_rect_ripple_effectwhite"
             android:textColor="@color/white"
-            android:textSize="13sp" />
-
-        <View
-            android:id="@+id/view_off"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/drop_button"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/LightGrey" />
+            android:textSize="@dimen/_14sdp" />
 
 
 
-
-
-
-
-    </RelativeLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

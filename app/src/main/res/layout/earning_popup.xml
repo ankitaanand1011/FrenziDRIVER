@@ -49,6 +49,7 @@
             android:textColor="#E3DFDF"
             android:textSize="15sp" />
         <TextView
+            android:id="@+id/tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="£ 25.00"
@@ -109,7 +110,7 @@
             android:backgroundTint="@color/LightGrey" />
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -123,13 +124,13 @@
                 android:id="@+id/btn_cancel"
                 android:layout_width="0dp"
                 android:layout_height="55dp"
-                android:layout_above="@+id/button_cancel"
                 android:layout_centerHorizontal="true"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/white"
                 android:elevation="5dp"
                 android:paddingLeft="20dp"
+                android:visibility="gone"
                 android:paddingRight="20dp"
                 android:stateListAnimator="@null"
                 android:text="Cancel"
@@ -139,22 +140,19 @@
 
             <Button
                 android:id="@+id/btn_done"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/_150sdp"
                 android:layout_height="55dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
                 android:backgroundTint="@color/MidnightBlue"
                 android:elevation="5dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
                 android:foreground="@drawable/btn_rect_ripple_effectwhite"
                 android:stateListAnimator="@null"
                 android:text=" Done "
+                android:textSize="@dimen/_14sdp"
                 android:textColor="@color/White"
                 android:translationZ="5dp" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

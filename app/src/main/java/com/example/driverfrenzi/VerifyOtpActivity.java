@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.driverfrenzi.api.RestClient;
 import com.example.driverfrenzi.api.ServerGeneralResponse;
 import com.example.driverfrenzi.responce.ResponseFetchRideHistory;
+import com.example.driverfrenzi.responce.ResponseStartRide;
 
 import java.util.Objects;
 
@@ -82,8 +83,10 @@ public class VerifyOtpActivity  extends AppCompatActivity {
         btn_verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent start=new Intent(VerifyOtpActivity.this,DropOffActivity.class);
-                startActivity(start);
+                verifyOtp();
+
+               /* Intent start=new Intent(VerifyOtpActivity.this, DropOffActivity.class);
+                startActivity(start);*/
             }
         });
         onecode.addTextChangedListener(new TextWatcher() {
@@ -143,7 +146,7 @@ public class VerifyOtpActivity  extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//               verifyOtp();
+                verifyOtp();
 
             }
         });
@@ -175,47 +178,17 @@ public class VerifyOtpActivity  extends AppCompatActivity {
                     Log.e(TAG, "onResponse: " + response.message());
                     Log.e(TAG, "onResponse: " + response.errorBody());
                     if (response.body().getStatus().equals(200)) {
-                        dialog.dismiss();
+                      //  dialog.dismiss();
 
 
-
-                        Toast.makeText(VerifyOtpActivity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
+                      //  Toast.makeText(VerifyOtpActivity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
 
-
-////                         SAVE  DATA TO LOCAL STORAGE
-//                        SharedPreferences sp = getSharedPreferences(Constant.USER_PREF, Context.MODE_PRIVATE);
-//                        SharedPreferences.Editor editor = sp.edit();
-//                        assert response.body() != null;
-//
-//                        editor.putString(Constant.USER_NAME, response.body().getResponse().getUserName());
-//                        editor.putString(Constant.USER_ID, String.valueOf(response.body().getResponse().getUserId()));
-//                        editor.putString(Constant.USER_ADDRESS, response.body().getResponse().getAddress());
-//                        editor.putString(Constant.USER_MAIL, response.body().getResponse().getEmail());
-//                        editor.apply();
-
-
-                      /*  Intent intent=new Intent(VerifyOtpActivity.this,MapScreen.class);
-                        startActivity(intent);
-                        finish();
-*/
-
-
-//                    Toast.makeText(LoginPage.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-//                        ProfileFragment profileFragment = new ProfileFragment();
-//
-//
-//                        assert getFragmentManager() != null;
-//                        getFragmentManager().beginTransaction()
-//                                .replace(R.id.container_main, profileFragment)
-//                                .addToBackStack(null)
-//                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                                .commit();
+                        startRide(dialog);
 
                     }else{
                         dialog.dismiss();
-//                        Toast.makeText(MainActivity.this,"Wrong username or password !!", Toast.LENGTH_SHORT).show();
+
                         Toast.makeText(VerifyOtpActivity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
@@ -236,52 +209,46 @@ public class VerifyOtpActivity  extends AppCompatActivity {
 
     }
 
-    private void startRide() {
-        SharedPreferences spp = Objects.requireNonNull(getSharedPreferences(Constant.DRIVER_PREF, Context.MODE_PRIVATE));
-        String User_Email = spp.getString(Constant.DRIVER_MAIL, "");
-
-        ACProgressFlower dialog = new ACProgressFlower.Builder(VerifyOtpActivity.this)
-                .direction(ACProgressConstant.DIRECT_CLOCKWISE)
-                .themeColor(Color.WHITE)
-                .fadeColor(Color.BLACK).build();
-        dialog.show();
-
-        String OTP=onecode.getText().toString()+twocode.getText().toString()+three_code.getText().toString()+forth_code.getText().toString();
+    private void startRide( ACProgressFlower dialog) {
 
 
-            RequestBody rideId = RequestBody.create(MediaType.parse("txt/plain"), ride_id);
-          //  RequestBody Otp = RequestBody.create(MediaType.parse("txt/plain"), OTP);
-
-            RestClient.getClient().StartRide(rideId).enqueue(new Callback<ResponseFetchRideHistory>() {
-                @Override
-                public void onResponse(Call<ResponseFetchRideHistory> call, Response<ResponseFetchRideHistory> response) {
-                    Log.e(TAG, "onResponse: Code :" + response.body());
-                    Log.e(TAG, "onResponse: " + response.code());
-                    Log.e(TAG, "onResponse: " + response.message());
-                    Log.e(TAG, "onResponse: " + response.errorBody());
-                    if (response.body().getStatus().equals(200)) {
-                        dialog.dismiss();
+        RequestBody rideId = RequestBody.create(MediaType.parse("txt/plain"), ride_id);
 
 
-
-                        Toast.makeText(VerifyOtpActivity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
-
-
-                    }else{
-                        dialog.dismiss();
-//                        Toast.makeText(MainActivity.this,"Wrong username or password !!", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(VerifyOtpActivity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ResponseFetchRideHistory> call, Throwable t) {
-                    Toast.makeText(VerifyOtpActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
+        RestClient.getClient().StartRide(rideId).enqueue(new Callback<ResponseStartRide>() {
+            @Override
+            public void onResponse(Call<ResponseStartRide> call, Response<ResponseStartRide> response) {
+                Log.e(TAG, "onResponse: Code :" + response.body());
+                Log.e(TAG, "onResponse: " + response.code());
+                Log.e(TAG, "onResponse: " + response.message());
+                Log.e(TAG, "onResponse: " + response.errorBody());
+                if (response.body().getStatus().equals(401)) {
                     dialog.dismiss();
+
+                    String paymentStatus = response.body().getResponse().getPaymentStatus();
+                    Log.e(TAG, "onResponse:paymentStatus>>>  "+paymentStatus);
+                    Toast.makeText(VerifyOtpActivity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    Intent start=new Intent(VerifyOtpActivity.this,DropOffActivity.class);
+                    start.putExtra("paymentStatus",paymentStatus);
+                    start.putExtra("ride_id",ride_id);
+                    start.putExtra("amount",response.body().getResponse().getAmount());
+                    startActivity(start);
+
+
+                }else{
+                    dialog.dismiss();
+//                        Toast.makeText(MainActivity.this,"Wrong username or password !!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VerifyOtpActivity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
                 }
-            });
+            }
+
+            @Override
+            public void onFailure(Call<ResponseStartRide> call, Throwable t) {
+                Toast.makeText(VerifyOtpActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
 
 
 

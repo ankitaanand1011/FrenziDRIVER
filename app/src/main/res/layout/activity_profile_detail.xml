@@ -465,7 +465,7 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_9sdp" />
 
-                        <EditText
+                        <TextView
                             android:id="@+id/et_license_expiry"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -473,7 +473,6 @@
                             android:background="@drawable/et_bg_white"
                             android:gravity="start"
                             android:textColorHint="@color/hint_color"
-                            android:inputType="date"
                             android:fontFamily="@font/poppins_regular"
                             android:padding="@dimen/_10sdp"
                             android:singleLine="true"

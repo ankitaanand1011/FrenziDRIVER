@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -32,11 +34,13 @@ import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -60,6 +64,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -81,10 +86,10 @@ import retrofit2.Response;
 public class ProfileDetailActivity extends AppCompatActivity {
 
     String TAG = "ProfileDetailActivity";
-    TextView tv_save,tv_vehicle_type;
+    TextView tv_save,tv_vehicle_type,et_license_expiry;
     EditText et_dri_name,et_dri_mobile,et_email,et_vehicle_no,
             et_full_address,et_post_code,et_vehicle_make,et_license,
-            et_license_expiry,et_insurance,et_conviction_points,et_conviction_p_reason;
+            et_insurance,et_conviction_points,et_conviction_p_reason;
     ImageView iv_back,iv_profile,iv_add_image,iv_license,iv_insurance;
     String dri_name, dri_phone, dri_address, dri_address2, postal_code,dri_image,contact_person,dri_email;
     RequestOptions options;
@@ -99,7 +104,7 @@ public class ProfileDetailActivity extends AppCompatActivity {
     Double add_lat ,add_lng;
     String profile_image_str;
     String driver_Name, driver_Image,driver_ID;
-
+    DatePickerDialog.OnDateSetListener mDateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,6 +177,7 @@ public class ProfileDetailActivity extends AppCompatActivity {
         functions();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void functions() {
 
        /* options = new RequestOptions()
@@ -227,6 +233,43 @@ public class ProfileDetailActivity extends AppCompatActivity {
                 vehicle_listview();
             }
         });
+
+        et_license_expiry.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog =  new DatePickerDialog(
+                        ProfileDetailActivity.this,
+                        //    android.R.style.Theme_DeviceDefault_Light,
+                        mDateListener,
+                        year,month,day
+                );
+                dialog.getWindow().setBackgroundDrawable( new ColorDrawable( Color.BLACK ) );
+                dialog.show();
+                return false;
+            }
+
+
+        });
+
+        mDateListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker , int year , int month , int day) {
+                month = month + 1;
+
+                Log.d( "onDateSet" , month + "/" + day + "/" + year );
+                et_license_expiry.setText( new StringBuilder().append( day ).append( "/" )
+                        .append( month ).append( "/" ).append( year ) );
+
+              /*  String selected_date= selectedDay + " / " + (selectedMonth + 1) + " / "
+                        + selectedYear;
+                edt_user_exp.setText(selected_date);*/
+            }
+        };
 
         FetchProfile();
     }
@@ -338,17 +381,17 @@ public class ProfileDetailActivity extends AppCompatActivity {
                         break;
                     case "license":
                         iv_license.setImageURI(uri);
-                        license_image = new File(uri.getPath());
-                        license_image.getAbsolutePath();
-                        //license_image = new File(getRealPathFromURI(ProfileDetailActivity.this, uri));
+//                        license_image = new File(uri.getPath());
+//                        license_image.getAbsolutePath();
+//                        //license_image = new File(getRealPathFromURI(ProfileDetailActivity.this, uri));
                         Log.e(TAG, "imageCallBack:license_image "+license_image);
                         break;
                     case "insurance":
                         iv_insurance.setImageURI(uri);
-                        insurance_image = new File(uri.getPath());
-                        insurance_image.getAbsolutePath();
+//                        insurance_image = new File(uri.getPath());
+//                        insurance_image.getAbsolutePath();
                         //insurance_image = new File(getRealPathFromURI(ProfileDetailActivity.this,uri));
-                        Log.e(TAG, "imageCallBack:license_image "+license_image);
+                        Log.e(TAG, "imageCallBack:license_image "+insurance_image);
                         break;
                 }
             } else {
@@ -575,6 +618,9 @@ public class ProfileDetailActivity extends AppCompatActivity {
     }
 
     private void UpdateProfile() {
+
+
+   
 
         ACProgressFlower dialog = new ACProgressFlower.Builder(this)
                 .direction(ACProgressConstant.DIRECT_CLOCKWISE)

@@ -11,6 +11,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
+import android.animation.Animator;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -23,6 +24,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -35,6 +37,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -51,6 +54,7 @@ import com.github.angads25.toggle.model.ToggleableView;
 import com.github.angads25.toggle.widget.LabeledSwitch;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -60,13 +64,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.Objects;
 
 public class OfflineActivity extends AppCompatActivity implements OnMapReadyCallback,
-        GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        GoogleMap.OnMarkerDragListener,
+        GoogleMap.OnMapLongClickListener{
 
     Activity activity;
     ImageView txt_menu;
@@ -86,7 +95,11 @@ public class OfflineActivity extends AppCompatActivity implements OnMapReadyCall
 
     String driver_Name, driver_Image;
     double current_lat, current_long;
-
+    GoogleApiClient googleApiClient;
+     double longitude;
+     double latitude;
+    LatLng latLng;
+    FloatingActionButton btn_current_location;
 
     @Override
     protected void onPause() {
@@ -108,11 +121,19 @@ public class OfflineActivity extends AppCompatActivity implements OnMapReadyCall
 //            window.setStatusBarColor(getResources().getColor(R.color.Black));
 //        }
 
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        assert mapFragment != null;
         mapFragment.getMapAsync(this);
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+
+      /*  SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        assert mapFragment != null;
+        mapFragment.getMapAsync(this);*/
 
         SharedPreferences spp = Objects.requireNonNull(getSharedPreferences(Constant.DRIVER_PREF, Context.MODE_PRIVATE));
         driver_Name = spp.getString(Constant.DRIVER_NAME, "");
@@ -124,7 +145,7 @@ public class OfflineActivity extends AppCompatActivity implements OnMapReadyCall
         Log.e(TAG, "onCreate: driver_Image >>> "+driver_Image );
 
 
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+      /*  LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
 // Define a listener that responds to location updates
         LocationListener locationListener = new LocationListener() {
@@ -168,7 +189,7 @@ public class OfflineActivity extends AppCompatActivity implements OnMapReadyCall
 
 
 
-        a = new LatLng(53.801277, -1.548567);
+        a = new LatLng(53.801277, -1.548567);*/
 
 
         txt_menu=findViewById(R.id.txt_menu);
@@ -178,20 +199,36 @@ public class OfflineActivity extends AppCompatActivity implements OnMapReadyCall
                 drawerLayout.openDrawer(Gravity.LEFT);
             }
         });
+
+
+        btn_current_location=findViewById(R.id.btn_current_location);
+
+        btn_current_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getCurrentLocation();
+                moveMap();
+            }
+        });
+
         switch_new=findViewById(R.id.switch_new);
+
+
+
         switch_new.setOn(false);
         switch_new.setOnToggledListener(new OnToggledListener() {
             @Override
             public void onSwitched(ToggleableView toggleableView, boolean isOn) {
                 if(isOn==true){
 
+
                     Intent offline=new Intent(OfflineActivity.this,JobRequestActivity.class);
-                    offline.putExtra("current_lat", current_lat);
-                    offline.putExtra("current_long",current_long);
+                    offline.putExtra("current_lat", latitude);
+                    offline.putExtra("current_long",longitude);
                     startActivity(offline);
 
 
-               }
+                }
                 Log.e(TAG, "onSwitched: Switch Status :"+isOn );
             }
 
@@ -225,91 +262,10 @@ public class OfflineActivity extends AppCompatActivity implements OnMapReadyCall
             }
         }
     }
-    private void getMyLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        mMap.setMyLocationEnabled(false);
-        mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
 
-            @Override
-            public void onMyLocationChange(Location location) {
-//                Findroutes(a,b,c);
-////                myLocation=location;
-//                LatLng ltlng=new LatLng(location.getLatitude(),location.getLongitude());
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
-                        a, 16f);
-                mMap.animateCamera(cameraUpdate);
-            }
-        });
-
-    }
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-//        LatLng pos = new LatLng(myLocation.getLatitude(),myLocation.getLongitude());
-//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 18.0f));
-        if(locationPermission) {
-            getMyLocation();
-        }
-        googleMap.addMarker(new MarkerOptions().position(a).title("Me").icon(BitmapDescriptorFactory.fromResource(R.drawable.map_j)));
-
-// Uses a custom icon.
-
-//        mMap.setOnCircleClickListener(new GoogleMap.OnCircleClickListener() {
-//
-//            @Override
-//            public void onCircleClick(Circle circle) {
-//                // Flip the r, g and b components of the circle's
-//                // stroke color.
-//                int strokeColor = circle.getStrokeColor() ^ 0x00ffffff;
-//                circle.setStrokeColor(strokeColor);
-//            }
-//        });
-
-        //Set Focus
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
-                a, 18f);
-        mMap.animateCamera(cameraUpdate);
-        MapsInitializer.initialize(this);
-//        addCustomMarker();
-
-    }
-    private void requestPermision() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                    LOCATION_REQUEST_CODE);
-        } else {
-            locationPermission = true;
-        }
-    }
-    @Override
-    public void onConnectionFailed(@NonNull  ConnectionResult connectionResult) {
-
-    }
-    private void addCustomMarker() {
-        if (mMap == null) {
-            return;
-        }
-
-        // adding a marker on map with image from  drawable
-        mMap.addMarker(new MarkerOptions()
-                .position(a)
-                .icon(BitmapDescriptorFactory.fromBitmap(getMarkerBitmapFromView(R.drawable.map_j))));
-    }
     private Bitmap getMarkerBitmapFromView(@DrawableRes int resId) {
 
-        View customMarkerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.view_custom_marker, null);
+        View customMarkerView = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(null, null);
         ImageView markerImageView = (ImageView) customMarkerView.findViewById(R.id.img_profile);
         markerImageView.setImageResource(resId);
         customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
@@ -326,7 +282,168 @@ public class OfflineActivity extends AppCompatActivity implements OnMapReadyCall
         customMarkerView.draw(canvas);
         return returnedBitmap;
     }
+    @Override
+    protected void onStart() {
+        googleApiClient.connect();
+        super.onStart();
+    }
 
+    @Override
+    protected void onStop() {
+        googleApiClient.disconnect();
+        super.onStop();
+    }
+
+    //Getting current location
+    private void getCurrentLocation() {
+//        mMap.clear();
+        //Creating a location object
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+
+
+
+            return;
+        }
+        Location location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+        if (location != null) {
+            //Getting longitude and latitude
+            longitude = location.getLongitude();
+            latitude = location.getLatitude();
+            Log.d(TAG, "getCurrentLocation: latitude >> "+latitude);
+            Log.d(TAG, "getCurrentLocation: longitude >> "+longitude);
+
+            //moving the map to location
+            moveMap();
+        }
+    }
+
+    //Function to move the map
+    private void moveMap() {
+        //String to display current latitude and longitude
+        String msg = latitude + ", "+longitude;
+        Log.e(TAG, "moveMap: Location Point ::"+msg );
+
+        //Creating a LatLng Object to store Coordinates
+        latLng = new LatLng(latitude, longitude);
+
+//        //Adding marker to map
+//        mMap.addMarker(new MarkerOptions()
+//                .position(latLng) //setting position
+//                .draggable(true) //Making the marker draggable
+//                .title("Me")); //Adding a title
+        if (mMap == null) {
+            return;
+        }
+        BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.map_j);
+        Bitmap b=bitmapdraw.getBitmap();
+        Bitmap smallMarker = Bitmap.createScaledBitmap(b, 84, 84, false);
+        // adding a marker on map with image from  drawable
+        mMap.addMarker(new MarkerOptions()
+                .position(latLng)
+                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker)));
+        //Moving the camera
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
+        //Animating the camera
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        String msg = latitude + ", "+longitude;
+        Log.e(TAG, "moveMap: Location Point ::"+msg );
+
+        //Creating a LatLng Object to store Coordinates
+        latLng = new LatLng(latitude, longitude);
+
+
+        if (mMap == null) {
+            return;
+        }
+
+        BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.map_j);
+        Bitmap b=bitmapdraw.getBitmap();
+        Bitmap smallMarker = Bitmap.createScaledBitmap(b, 84, 84, false);
+        // adding a marker on map with image from  drawable
+        mMap.addMarker(new MarkerOptions()
+                .position(latLng)
+                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker)));
+        //Moving the camera
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
+        //Animating the camera
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.setOnMarkerDragListener(this);
+        mMap.setOnMapLongClickListener(this);
+//        googleMap.addMarker(new MarkerOptions().position(latLng).title("Me").icon(BitmapDescriptorFactory.fromResource(R.drawable.map_j)));
+
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        getCurrentLocation();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onMapLongClick(LatLng latLng) {
+
+    }
+
+    @Override
+    public void onMarkerDragStart(Marker marker) {
+
+    }
+
+    @Override
+    public void onMarkerDrag(Marker marker) {
+
+    }
+
+    @Override
+    public void onMarkerDragEnd(Marker marker) {
+        //Getting the coordinates
+        latitude = marker.getPosition().latitude;
+        longitude = marker.getPosition().longitude;
+
+        //Moving the map
+        moveMap();
+    }
+    private void circularRevealTransition() {
+        int X = 9 * drawerLayout.getWidth()/10; //The X coordinate for the initial position
+        int Y = 9 * drawerLayout.getHeight()/10; //The Y coordinate for the initial position
+        int Duration = 500;  //Duration for the animation
+
+        float finalRadius = Math.max(drawerLayout.getWidth(), drawerLayout.getHeight()); //The final radius must be the end points of the current activity
+
+        // create the animator for this view, with the start radius as zero
+        Animator circularReveal = ViewAnimationUtils.createCircularReveal(drawerLayout, X, Y, 0, finalRadius);
+        circularReveal.setDuration(Duration);
+
+        // set the view visible and start the animation
+        drawerLayout.setVisibility(View.VISIBLE);
+        // start the animation
+        circularReveal.start();
+    }
 
 
     @Override
@@ -397,14 +514,14 @@ public class OfflineActivity extends AppCompatActivity implements OnMapReadyCall
         super.onPostCreate(savedInstanceState);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-      //  toolbar=findViewById(R.id.toolbar);
-      LinearLayout your_ride_layout=findViewById(R.id.your_ride_layout);
-      LinearLayout  refer_layout=findViewById(R.id.refer_layout);
-      CircularImageView img_profile=findViewById(R.id.img_profile);
-      LinearLayout  btn_logout=findViewById(R.id.btn_logout);
-      LinearLayout  btn_contact_us=findViewById(R.id.btn_contact_us);
-      LinearLayout  btn_about=findViewById(R.id.btn_about);
-      TextView txt = findViewById(R.id.txt);
+        //  toolbar=findViewById(R.id.toolbar);
+        LinearLayout your_ride_layout=findViewById(R.id.your_ride_layout);
+        LinearLayout  refer_layout=findViewById(R.id.refer_layout);
+        CircularImageView img_profile=findViewById(R.id.img_profile);
+        LinearLayout  btn_logout=findViewById(R.id.btn_logout);
+        LinearLayout  btn_contact_us=findViewById(R.id.btn_contact_us);
+        LinearLayout  btn_about=findViewById(R.id.btn_about);
+        TextView txt = findViewById(R.id.txt);
 
 //        ActionBar actionBar = getSupportActionBar();
 //        actionBar.setDisplayHomeAsUpEnabled(true);

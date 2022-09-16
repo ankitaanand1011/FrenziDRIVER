@@ -83,8 +83,10 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Name"
+                    android:textColorHint="@color/Gray"
+                    android:textColor="@color/black"
                     android:paddingLeft="10dp"
                     android:textSize="14sp" />
 
@@ -95,7 +97,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/LightGrey" />
+                    android:background="@color/LightGrey"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/phone"
@@ -113,12 +116,14 @@
                     android:id="@+id/edt_user_phone"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:inputType="number"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Mobile Number"
+                    android:inputType="number"
+                    android:textColorHint="@color/Gray"
+                    android:textColor="@color/black"
                     android:paddingLeft="10dp"
                     android:textSize="14sp" />
 
@@ -129,7 +134,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/LightGrey" />
+                    android:background="@color/LightGrey"
+                    android:visibility="gone" />
 
 
                 <TextView
@@ -151,8 +157,11 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Email"
+                    android:textColorHint="@color/Gray"
+                    android:textColor="@color/black"
+                    android:inputType="textEmailAddress"
                     android:paddingLeft="10dp"
                     android:textSize="14sp" />
 
@@ -163,7 +172,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/LightGrey" />
+                    android:background="@color/LightGrey"
+                    android:visibility="gone" />
 
 
                 <TextView
@@ -175,6 +185,7 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Address"
+
                     android:textColor="@color/MidnightBlue"
                     android:textSize="15sp" />
 
@@ -185,8 +196,10 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Address"
+                    android:textColorHint="@color/Gray"
+                    android:textColor="@color/black"
                     android:paddingLeft="10dp"
                     android:textSize="14sp" />
 
@@ -197,7 +210,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/LightGrey" />
+                    android:background="@color/LightGrey"
+                    android:visibility="gone" />
 
 
                 <TextView
@@ -215,12 +229,14 @@
                     android:id="@+id/edt_user_postcode"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:inputType="number"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Postcode"
+                    android:textColorHint="@color/Gray"
+                    android:textColor="@color/black"
+                    android:inputType="textPhonetic"
                     android:paddingLeft="10dp"
                     android:textSize="14sp" />
 
@@ -230,7 +246,33 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/LightGrey" />
+                    android:background="@color/LightGrey"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/viewthree"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Vehicle Make"
+                    android:textColor="@color/MidnightBlue"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/edt_user_vehicle_make"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/rect_gray_edt_box"
+                    android:hint="Enter Vehicle Make"
+                    android:textColorHint="@color/Gray"
+                    android:textColor="@color/black"
+                    android:paddingLeft="10dp"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -243,17 +285,40 @@
                     android:textColor="@color/MidnightBlue"
                     android:textSize="15sp" />
 
-                <EditText
-                    android:id="@+id/edt_user_vehicle_type"
+                <RelativeLayout
+                    android:id="@+id/rl_vehicle_type"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/white"
-                    android:hint="Enter Vehicle Type"
-                    android:paddingLeft="10dp"
-                    android:textSize="14sp" />
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@drawable/spinner_bg_pink"
+                    android:padding="@dimen/_10sdp">
+
+                    <TextView
+                        android:id="@+id/tv_vehicle_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/poppins_regular"
+                        android:hint="eg. Vehicle Type"
+                        android:textColor="@color/MidnightBlue"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="@dimen/_14sdp"
+                        tools:ignore="SpUsage" />
+
+                    <ImageView
+                        android:id="@+id/iv_drop"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:src="@drawable/down_r" />
+
+
+                </RelativeLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -261,7 +326,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/LightGrey" />
+                    android:background="@color/LightGrey"
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -281,8 +347,10 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/white"
-                    android:hint="Enter Vehicle No"
+                    android:textColorHint="@color/Gray"
+                    android:textColor="@color/black"
+                    android:background="@drawable/rect_gray_edt_box"
+                    android:hint="Enter Vehicle Registration No"
                     android:paddingLeft="10dp"
                     android:textSize="14sp" />
 
@@ -292,7 +360,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/LightGrey" />
+                    android:background="@color/LightGrey"
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -312,8 +381,11 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/white"
-                    android:hint="Enter License"
+                    android:background="@drawable/rect_gray_edt_box"
+                    android:hint="Enter License no."
+                    android:textColorHint="@color/Gray"
+                    android:textColor="@color/black"
+                    android:inputType="textPhonetic"
                     android:paddingLeft="10dp"
                     android:textSize="14sp" />
 
@@ -323,7 +395,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/LightGrey" />
+                    android:background="@color/LightGrey"
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -333,21 +406,77 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="License Expiry"
+                    android:textColorHint="@color/Gray"
                     android:textColor="@color/MidnightBlue"
                     android:textSize="15sp" />
 
-                <EditText
+
+                <TextView
                     android:id="@+id/edt_user_exp"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rect_gray_edt_box"
                     android:hint="DD/MM/YYYY"
+                    android:gravity="center_vertical"
                     android:maxEms="10"
+                    android:editable="false"
+                    android:textColorHint="@color/Gray"
+                    android:textColor="@color/black"
                     android:paddingLeft="10dp"
                     android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/viewthree"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="License Pic"
+                    android:textColor="@color/MidnightBlue"
+                    android:textSize="15sp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_license_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/et_bg_white"
+                    android:padding="@dimen/_5sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/iv_license"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/driving_license" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center"
+                            android:text="Click to add Image"
+                            android:textAllCaps="true"
+                            android:textColor="@color/IndianRed"
+                            android:textSize="@dimen/_12sdp" />
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -355,7 +484,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/LightGrey" />
+                    android:background="@color/LightGrey"
+                    android:visibility="gone" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -374,12 +504,63 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
-                    android:inputType="number"
                     android:layout_marginRight="20dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Insurance Number"
+                    android:textColorHint="@color/Gray"
+                    android:textColor="@color/black"
+                    android:inputType="number"
                     android:paddingLeft="10dp"
                     android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/viewthree"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Insurance Pic"
+                    android:textColor="@color/MidnightBlue"
+                    android:textSize="15sp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_insurance_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/et_bg_white"
+                    android:padding="@dimen/_5sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/iv_insurance"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            android:src="@mipmap/driving_license" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:gravity="center"
+
+                            android:text="Click to add Image"
+                            android:textAllCaps="true"
+                            android:textColor="@color/IndianRed"
+                            android:textSize="@dimen/_12sdp" />
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -387,10 +568,10 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@color/LightGrey" />
+                    android:background="@color/LightGrey"
+                    android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/pss"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewsix"
@@ -407,11 +588,65 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
-                    android:inputType="textVisiblePassword"
                     android:layout_marginRight="20dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Password"
+                    android:textColorHint="@color/Gray"
+                    android:textColor="@color/black"
+                    android:inputType="textPassword"
                     android:paddingLeft="10dp"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/viewsix"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Conviction Points"
+                    android:textColor="@color/MidnightBlue"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/edt_conviction_points"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/rect_gray_edt_box"
+                    android:hint="Conviction Point"
+                    android:inputType="text"
+                    android:textColorHint="@color/Gray"
+                    android:textColor="@color/black"
+                    android:paddingLeft="10dp"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/viewsix"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Conviction Points Reason"
+                    android:textColor="@color/MidnightBlue"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/edt_con_points_reason"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/rect_gray_edt_box"
+                    android:hint="Enter Reasons"
+                    android:inputType="text"
+                    android:paddingLeft="10dp"
+                    android:textColorHint="@color/Gray"
+                    android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <View
@@ -420,6 +655,7 @@
                     android:layout_height="1dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="15dp"
+
                     android:layout_marginRight="20dp"
                     android:background="@color/LightGrey" />
 
@@ -436,8 +672,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="15dp"
+                        android:layout_toStartOf="@+id/tp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="By signing up you agree to our Terms and"
+                        android:text="By signing up you agree to our Terms and Conditions and Privacy Polic"
                         android:textColor="@color/Gray"
                         android:textSize="12sp" />
 
@@ -446,6 +683,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/sign"
                         android:layout_marginLeft="20dp"
+                        android:visibility="gone"
                         android:fontFamily="@font/poppins_semibold"
                         android:text="Conditions and Privacy Policy"
                         android:textColor="@color/Gray" />
@@ -632,7 +870,7 @@
                         android:layout_width="39dp"
                         android:layout_height="1dp"
                         android:layout_below="@id/signin"
-                        android:background="@color/white"
+                        android:background="@drawable/rect_gray_edt_box"
                         />
 
                 </RelativeLayout>

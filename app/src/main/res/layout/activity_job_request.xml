@@ -69,7 +69,6 @@
             android:background="@drawable/rectangle_blue"
             android:paddingLeft="30dp"
             android:paddingTop="15dp"
-            android:text="You have 10 new request!"
             android:textColor="@color/white"
             android:textSize="13sp" />
 

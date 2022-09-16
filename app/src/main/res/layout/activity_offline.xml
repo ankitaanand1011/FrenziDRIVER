@@ -71,342 +71,342 @@
 
         </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/offline">
-
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="0dp"
-            map:uiCompass="true"
-            map:uiRotateGestures="true"
-            map:uiScrollGestures="false"
-            map:uiTiltGestures="true"
-            map:uiZoomControls="true"
-            map:uiZoomGestures="true"
-            tools:context=".MapScreen" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_alignParentRight="true"
-            android:layout_above="@id/txt_driver"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="30dp"
-            android:src="@drawable/gps"
-            app:backgroundTint="@color/white"
-            app:borderWidth="5dp"
-            app:elevation="8dp"
-            app:fabSize="normal" />
-
-        <RelativeLayout
-            android:id="@+id/txt_offline_btn"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/rectangle_curve_midnight_blue">
-
-
-            <LinearLayout
+            android:layout_below="@id/offline">
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_marginBottom="0dp"
+                map:uiCompass="true"
+                map:uiRotateGestures="true"
+                map:uiScrollGestures="false"
+                map:uiTiltGestures="true"
+                map:uiZoomControls="true"
+                map:uiZoomGestures="true"
+                tools:context=".MapScreen" />
 
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_above="@id/txt_driver"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp"
+                android:src="@drawable/gps"
+                app:backgroundTint="@color/white"
+                android:id="@+id/btn_current_location"
+                app:borderWidth="5dp"
+                app:elevation="8dp"
+                app:fabSize="normal" />
 
-                <ImageView
-                    android:id="@+id/maplocal"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="35dp"
-                    android:background="@drawable/offer" />
+            <RelativeLayout
+                android:id="@+id/txt_offline_btn"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rectangle_curve_midnight_blue">
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingLeft="18dp">
-
-                    <TextView
-                        android:id="@+id/km"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="You are Offline"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/km"
-                        android:text="Go online to start accepting jobs!"
-                        android:textColor="@color/LightGrey"
-                        android:textSize="12sp"
-
-                        />
-                </LinearLayout>
-            </LinearLayout>
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal">
 
 
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/txt_driver"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/buttompannelcurvedbg"
-            android:elevation="20dp"
-            android:orientation="vertical"
-            app:behavior_hideable="true"
-            app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
-
-            <View
-                android:id="@+id/txt_view_bar"
-                android:layout_width="100dp"
-                android:layout_height="2dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:background="#B8B6B6" />
-
-            <LinearLayout
-                android:id="@+id/monicaone"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_below="@id/txt_view_bar"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/curve_page_one"
-                android:backgroundTint="@color/transparent_Gray"
-                android:padding="8dp"
-                android:paddingTop="20dp"
-                android:visibility="gone">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/profile" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="4dp"
-                    android:layout_weight="2"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Monica G"
-                        android:textColor="@color/MidnightBlue"
-                        android:textSize="18sp" />
+                    <ImageView
+                        android:id="@+id/maplocal"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="35dp"
+                        android:background="@drawable/offer" />
 
                     <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingLeft="18dp">
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/km"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="You are Offline"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
 
-                        <ImageView
-                            android:layout_width="10dp"
-                            android:layout_height="10dp"
-                            android:background="@drawable/star_w"
-                            android:backgroundTint="@color/Goldenrod" />
-
+                            />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="2dp"
-                            android:fontFamily="@font/poppins_regular"
-                            android:text="Gold Member"
-                            android:textColor="@color/Goldenrod"
-                            android:textSize="11sp" />
+                            android:layout_below="@id/km"
+                            android:text="Go online to start accepting jobs!"
+                            android:textColor="@color/LightGrey"
+                            android:textSize="12sp"
 
+                            />
                     </LinearLayout>
                 </LinearLayout>
 
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+            </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/doller"
-                        android:layout_width="wrap_content"
+
+            <RelativeLayout
+                android:id="@+id/txt_driver"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/buttompannelcurvedbg"
+                android:elevation="20dp"
+                android:orientation="vertical"
+                app:behavior_hideable="true"
+                app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+                <View
+                    android:id="@+id/txt_view_bar"
+                    android:layout_width="100dp"
+                    android:layout_height="2dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:background="#B8B6B6" />
+
+                <LinearLayout
+                    android:id="@+id/monicaone"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_below="@id/txt_view_bar"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/curve_page_one"
+                    android:backgroundTint="@color/transparent_Gray"
+                    android:padding="8dp"
+                    android:paddingTop="20dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/profile" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:paddingLeft="8dp"
-                        android:paddingTop="6dp"
-                        android:paddingRight="15dp"
-                        android:paddingBottom="6dp"
-                        android:text="£ 589.00"
-                        android:textColor="@color/dark_pink"
-                        android:textSize="15sp" />
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
 
-                    <TextView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="Monica G"
+                            android:textColor="@color/MidnightBlue"
+                            android:textSize="18sp" />
+
+                        <LinearLayout
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:background="@drawable/star_w"
+                                android:backgroundTint="@color/Goldenrod" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="2dp"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="Gold Member"
+                                android:textColor="@color/Goldenrod"
+                                android:textSize="11sp" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/doller"
-                        android:layout_centerHorizontal="true"
-                        android:text="Earned"
-                        android:textColor="@color/Gray"
-                        android:textSize="12sp" />
-                </RelativeLayout>
-            </LinearLayout>
+                        android:layout_gravity="center">
 
+                        <TextView
+                            android:id="@+id/doller"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:paddingLeft="8dp"
+                            android:paddingTop="6dp"
+                            android:paddingRight="15dp"
+                            android:paddingBottom="6dp"
+                            android:text="£ 589.00"
+                            android:textColor="@color/dark_pink"
+                            android:textSize="15sp" />
 
-            <LinearLayout
-                android:id="@+id/txt_details"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_above="@id/txt_bar"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="25dp"
-                android:layout_marginBottom="25dp"
-                android:background="@drawable/rectangle_main_background_corve"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/doller"
+                            android:layout_centerHorizontal="true"
+                            android:text="Earned"
+                            android:textColor="@color/Gray"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+                </LinearLayout>
+
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:id="@+id/txt_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_above="@id/txt_bar"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginBottom="25dp"
+                    android:background="@drawable/rectangle_main_background_corve"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
 
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="@drawable/clock" />
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="15.9"
-                        android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                    <TextView
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/clock" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="15.9"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Hours Online"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Hours Online"
-                        android:textColor="@color/white"
-                        android:textSize="13sp" />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/km_c" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="90 KM"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Total Distance"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/file" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="49"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="Total Rides"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                <View
+                    android:id="@+id/txt_bar"
+                    android:layout_width="100dp"
+                    android:layout_height="2dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/black" />
 
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="@drawable/km_c" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="90 KM"
-                        android:textColor="@color/white"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Total Distance"
-                        android:textColor="@color/white"
-                        android:textSize="13sp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:background="@drawable/file" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="49"
-                        android:textColor="@color/white"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Total Rides"
-                        android:textColor="@color/white"
-                        android:textSize="13sp" />
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/txt_bar"
-                android:layout_width="100dp"
-                android:layout_height="2dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerInParent="true"
-                android:layout_marginBottom="5dp"
-                android:background="@color/black" />
+            </RelativeLayout>
 
         </RelativeLayout>
-
-    </RelativeLayout>
 
 
 
@@ -577,10 +577,10 @@
                 <!--                    android:text="Shows"/>-->
 
                 <!--            </LinearLayout>-->
-<!--                <View-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="0.1dp"-->
-<!--                    android:background="@color/black" />-->
+                <!--                <View-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="0.1dp"-->
+                <!--                    android:background="@color/black" />-->
 
 
 
@@ -619,10 +619,10 @@
 
                 </LinearLayout>
 
-<!--                <View-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="0.1dp"-->
-<!--                    android:background="@color/black" />-->
+                <!--                <View-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="0.1dp"-->
+                <!--                    android:background="@color/black" />-->
 
                 <LinearLayout
                     android:id="@+id/refer_layout"
@@ -765,10 +765,10 @@
 
                 </LinearLayout>
 
-<!--                <View-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="0.1dp"-->
-<!--                    android:background="@color/black" />-->
+                <!--                <View-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="0.1dp"-->
+                <!--                    android:background="@color/black" />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
