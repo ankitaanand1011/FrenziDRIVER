@@ -44,6 +44,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -105,6 +106,10 @@ public class ProfileDetailActivity extends AppCompatActivity {
     String profile_image_str;
     String driver_Name, driver_Image,driver_ID;
     DatePickerDialog.OnDateSetListener mDateListener;
+    String gender = "male";
+    String customer_prefer = "male_female";
+    RadioButton rb_male, rb_female, rb_male_female, rb_female_only,rb_male_only;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,6 +178,11 @@ public class ProfileDetailActivity extends AppCompatActivity {
         iv_license = findViewById(R.id.iv_license);
         iv_insurance = findViewById(R.id.iv_insurance);
         rl_insurance_image = findViewById(R.id.rl_insurance_image);
+        rb_male=findViewById(R.id.rb_male);
+        rb_female=findViewById(R.id.rb_female);
+        rb_male_female=findViewById(R.id.rb_male_female);
+        rb_female_only=findViewById(R.id.rb_female_only);
+        rb_male_only=findViewById(R.id.rb_male_only);
 
         functions();
     }
@@ -222,6 +232,21 @@ public class ProfileDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // call profile update API
+
+
+                if (rb_male.isChecked()) {
+                    gender = "male";
+                } else if (rb_female.isChecked()) {
+                    gender = "female";
+                }
+
+                if (rb_male_female.isChecked()) {
+                    customer_prefer = "any";
+                } else if (rb_female_only.isChecked()) {
+                    customer_prefer = "female_only";
+                } else if (rb_male_only.isChecked()) {
+                    customer_prefer = "male_only";
+                }
                 UpdateProfile();
             }
         });
@@ -651,6 +676,8 @@ public class ProfileDetailActivity extends AppCompatActivity {
         RequestBody conviction_points = RequestBody.create(MediaType.parse("text/plain"),et_conviction_points.getText().toString().trim() );
         RequestBody license_points_reason = RequestBody.create(MediaType.parse("text/plain"),et_conviction_p_reason.getText().toString().trim() );
         RequestBody convictions = RequestBody.create(MediaType.parse("text/plain"),"convictions" );
+        RequestBody post_Gender = RequestBody.create(MediaType.parse("txt/plain"), gender);
+        RequestBody post_customer_preference = RequestBody.create(MediaType.parse("txt/plain"), customer_prefer);
 
 
 
@@ -676,7 +703,7 @@ public class ProfileDetailActivity extends AppCompatActivity {
         RestClient.getClient().UpdateDriverProfile(driver_id,name,phone,email,
                 address,address_lat,address_long,post_code,vehicle_type,
                 vehicle_no,vehicle_make, license,license_expiry,insurance_no,
-                conviction_points,license_points_reason,
+                conviction_points,license_points_reason,post_Gender,post_customer_preference,
                 lic_image,ins_image,pro_image
                 // license_image,insurance_certificate,image_icon
         ).enqueue(new Callback<ProfileResponse>() {

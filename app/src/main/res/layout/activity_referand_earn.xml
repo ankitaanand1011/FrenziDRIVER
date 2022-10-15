@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_background"
-    tools:context="ReferandEarn">
+    tools:context=".ReferAndEarn">
 
     <RelativeLayout
         android:id="@+id/txt_back_layouts"
@@ -99,13 +99,13 @@
             >
 
 
-            <EditText
+            <TextView
+                android:id="@+id/tv_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="AGH049"
                 android:textColor="@color/dark_pink"
                 android:textSize="22sp" />
 
@@ -137,8 +137,8 @@
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Invite Friends"
                 android:textColor="@color/white"
-                app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
-                android:textSize="13sp" />
+                android:textSize="13sp"
+                app:layout_behavior="android.support.design.widget.BottomSheetBehavior" />
 
         </RelativeLayout>
 

@@ -8,6 +8,7 @@ public class Constant {
     public static final String DRIVER_MAIL = "DRIVER_MAIL";
     public static final String DRIVER_ADDRESS = "DRIVER_ADDRESS";
     public static final String DRIVER_IMAGE = "DRIVER_IMAGE";
+    public static final String DRIVER_AVAILABILITY = "DRIVER_AVAILABILITY";
 
 
 }

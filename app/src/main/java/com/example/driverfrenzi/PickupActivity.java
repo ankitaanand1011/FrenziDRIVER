@@ -2,6 +2,7 @@ package com.example.driverfrenzi;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -14,6 +15,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
@@ -33,6 +35,7 @@ import android.widget.TextView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -43,9 +46,14 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import java.util.ArrayList;
 
 public class PickupActivity extends AppCompatActivity implements OnMapReadyCallback,
-        GoogleApiClient.OnConnectionFailedListener {
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener{
 
     // final private static int SPLASH_TIME_OUT = 3000;
     private static final String TAG = "PickupActivity";
@@ -61,6 +69,11 @@ public class PickupActivity extends AppCompatActivity implements OnMapReadyCallb
     double  pickup_lat,pickup_long;
     double current_lat, current_long;
     String ride_id;
+    LatLng latLngA, latLngB;
+    double curr_lat,curr_long,pick_lat,pick_long;
+    GoogleApiClient googleApiClient;
+    private double longitude;
+    private double latitude;
 
     @Override
     protected void onPause() {
@@ -74,7 +87,30 @@ public class PickupActivity extends AppCompatActivity implements OnMapReadyCallb
         setContentView(R.layout.activity_pickup);
 
         ride_id =getIntent().getStringExtra("ride_id");
+        curr_lat = getIntent().getDoubleExtra("current_lat",0.0);
+        curr_long = getIntent().getDoubleExtra("current_long",0.0);
+        pick_lat = getIntent().getDoubleExtra("pickup_lat",0.0);
+        pick_long = getIntent().getDoubleExtra("pickup_long",0.0);
+
         btn_back = findViewById(R.id.btn_back);
+        btn_verify_otp = findViewById(R.id.btn_verify_otp);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        assert mapFragment != null;
+        mapFragment.getMapAsync(this);
+        // a = new LatLng(53.801277, -1.548567);
+
+
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+
+        getMyLocation();
+        moveMap();
+
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +118,7 @@ public class PickupActivity extends AppCompatActivity implements OnMapReadyCallb
             }
         });
 
-        btn_verify_otp = findViewById(R.id.btn_verify_otp);
+
         btn_verify_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,125 +128,6 @@ public class PickupActivity extends AppCompatActivity implements OnMapReadyCallb
             }
         });
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        assert mapFragment != null;
-        mapFragment.getMapAsync(this);
-        a = new LatLng(53.801277, -1.548567);
-        double curr_lat = getIntent().getDoubleExtra("current_lat",0.0);
-        double curr_long = getIntent().getDoubleExtra("current_long",0.0);
-        double pick_lat = getIntent().getDoubleExtra("pickup_lat",0.0);
-        double pick_long = getIntent().getDoubleExtra("pickup_long",0.0);
-
-
-
-        LatLng latLngA = new LatLng(curr_lat,curr_long);
-        LatLng latLngB = new LatLng(pick_lat,pick_long);
-
-       /* LatLng latLngA = new LatLng(53.801277,-1.548567);
-        LatLng latLngB = new LatLng(44.3300033,23.7992975);*/
-
-        Location locationA = new Location("point A");
-        locationA.setLatitude(latLngA.latitude);
-        locationA.setLongitude(latLngA.longitude);
-        Location locationB = new Location("point B");
-        locationB.setLatitude(latLngB.latitude);
-        locationB.setLongitude(latLngB.longitude);
-
-        double distance = locationA.distanceTo(locationB);
-        double timeA = locationA.getTime();
-        double timeB = locationB.getTime();
-
-        Log.e(TAG, "onCreate: distance >> "+distance );
-        Log.e(TAG, "onCreate: timeA >> "+timeA );
-        Log.e(TAG, "onCreate: timeB >> "+timeB );
-
-
-       /* LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
-// Define a listener that responds to location updates
-        LocationListener locationListener = new LocationListener() {
-            public void onLocationChanged(Location location) {
-                // Called when a new location is found by the network location provider.
-                //   makeUseOfNewLocation(location);
-
-                Log.e(TAG, "onLocationChanged: curr_lat "+location.getLatitude() );
-                Log.e(TAG, "onLocationChanged: curr_long "+location.getLongitude() );
-
-            }
-
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-            }
-
-            public void onProviderEnabled(String provider) {
-            }
-
-            public void onProviderDisabled(String provider) {
-            }
-        };
-
-// Register the listener with the Location Manager to receive location updates
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        locationManager.requestLocationUpdates
-                (LocationManager.NETWORK_PROVIDER, 0, 0,  locationListener);
-
-
-*/
-
-
-
-       // mMap = googleMap;
-    //    getMyLocation();
-
-
-//        if (Build.VERSION.SDK_INT >= 21) {
-//            Window window = getWindow();
-//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            window.setStatusBarColor(getResources().getColor(R.color.MidnightBlue));
-//        }
-
-      /*  btn_verify_otp=findViewById(R.id.btn_verify_otp);
-        btn_verify_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent start=new Intent(PickupActivity.this,DropOffActivity.class);
-                startActivity(start);
-            }
-        });*/
-
-
-
-      /*  new Handler().postDelayed(new Runnable() {
-
-            *//*
-             * Showing splash screen with a timer. This will be useful when you
-             * want to show case your app logo / company
-             *//*
-
-            @Override
-            public void run() {
-
-
-                Intent intent2 = new Intent(PickupActivity.this, PaymentStartActivity.class);
-
-                startActivity(intent2);
-                finish();
-
-
-
-
-            }
-        }, SPLASH_TIME_OUT);*/
 
     }
     @Override
@@ -233,7 +150,7 @@ public class PickupActivity extends AppCompatActivity implements OnMapReadyCallb
         }
     }
     private void getMyLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+      /*  if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -256,42 +173,97 @@ public class PickupActivity extends AppCompatActivity implements OnMapReadyCallb
                         a, 16f);
                 mMap.animateCamera(cameraUpdate);
             }
-        });
+        });*/
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.
+                checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Location location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+        if (location != null) {
+            //Getting longitude and latitude
+            longitude = location.getLongitude();
+            latitude = location.getLatitude();
+
+            //moving the map to location
+            moveMap();
+        }
+
+    }
+    private void moveMap() {
+
+        latLngA = new LatLng(curr_lat,curr_long);
+        latLngB = new LatLng(pick_lat,pick_long);
+
+        if (mMap == null) {
+            return;
+        }
+        BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.map_j);
+        Bitmap b=bitmapdraw.getBitmap();
+        Bitmap smallMarker = Bitmap.createScaledBitmap(b, 84, 84, false);
+        // adding a marker on map with image from  drawable
+        mMap.addMarker(new MarkerOptions()
+                .position(latLngA)
+                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker)));
+        //Moving the camera
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(curr_lat, curr_long), 16));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(16), 2000, null);
+
+
 
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
-//        LatLng pos = new LatLng(myLocation.getLatitude(),myLocation.getLongitude());
-//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 18.0f));
-        if(locationPermission) {
-            getMyLocation();
+
+
+
+        showLineBetween(curr_lat,curr_long,pickup_lat,pickup_long);
+
+        latLngA = new LatLng(curr_lat,curr_long);
+        latLngB = new LatLng(pick_lat,pick_long);
+
+        if (mMap == null) {
+            return;
         }
-        googleMap.addMarker(new MarkerOptions().position(a).title("Me").icon(BitmapDescriptorFactory.fromResource(R.drawable.map_j)));
 
-// Uses a custom icon.
+        BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.map_j);
+        Bitmap b=bitmapdraw.getBitmap();
+        Bitmap smallMarker = Bitmap.createScaledBitmap(b, 84, 84, false);
+        // adding a marker on map with image from  drawable
+        mMap.addMarker(new MarkerOptions()
+                .position(latLngA)
+                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker)));
 
-//        mMap.setOnCircleClickListener(new GoogleMap.OnCircleClickListener() {
-//
-//            @Override
-//            public void onCircleClick(Circle circle) {
-//                // Flip the r, g and b components of the circle's
-//                // stroke color.
-//                int strokeColor = circle.getStrokeColor() ^ 0x00ffffff;
-//                circle.setStrokeColor(strokeColor);
-//            }
-//        });
-
-
-        //Set Focus
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
-                a, 18f);
-        mMap.animateCamera(cameraUpdate);
-        MapsInitializer.initialize(this);
-//        addCustomMarker();
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(curr_lat, curr_long), 16));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(16), 2000, null);
 
 
 
+        BitmapDrawable bitmapdraw1=(BitmapDrawable)getResources().getDrawable(R.drawable.navigation);
+        Bitmap b1=bitmapdraw1.getBitmap();
+        Bitmap smallMarker1 = Bitmap.createScaledBitmap(b1, 84, 84, false);
+        // adding a marker on map with image from  drawable
+        mMap.addMarker(new MarkerOptions()
+                .position(latLngB)
+                .icon(BitmapDescriptorFactory.fromBitmap(smallMarker1)));
+
+       /* mMap.moveCamera(CameraUpdateFactory.newLatLng(latLngB));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(16));*/
+
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+        googleMap.getUiSettings().setScrollGesturesEnabled(true);
+        googleMap.getUiSettings().setZoomGesturesEnabled(true);
 
 
 
@@ -339,5 +311,31 @@ public class PickupActivity extends AppCompatActivity implements OnMapReadyCallb
             drawable.draw(canvas);
         customMarkerView.draw(canvas);
         return returnedBitmap;
+    }
+
+    public void showLineBetween(double from_latitude, double from_longitude ,
+                                double to_latitude, double to_longitude){
+
+        ArrayList<LatLng> points = new ArrayList<LatLng>();
+        PolylineOptions polyLineOptions = new PolylineOptions();
+        points.add(new LatLng(from_latitude,from_longitude));
+        points.add(new LatLng(to_latitude,to_longitude));
+        polyLineOptions.width(7 * 1);
+        polyLineOptions.geodesic(true);
+        polyLineOptions.color(getResources().getColor(R.color.black));
+        polyLineOptions.addAll(points);
+        Polyline polyline = mMap.addPolyline(polyLineOptions);
+        polyline.setGeodesic(true);
+
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        getMyLocation();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
     }
 }

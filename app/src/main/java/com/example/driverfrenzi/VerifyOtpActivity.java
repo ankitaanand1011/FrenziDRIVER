@@ -146,7 +146,7 @@ public class VerifyOtpActivity  extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                verifyOtp();
+               // verifyOtp();
 
             }
         });
@@ -178,7 +178,7 @@ public class VerifyOtpActivity  extends AppCompatActivity {
                     Log.e(TAG, "onResponse: " + response.message());
                     Log.e(TAG, "onResponse: " + response.errorBody());
                     if (response.body().getStatus().equals(200)) {
-                      //  dialog.dismiss();
+                        dialog.dismiss();
 
 
                       //  Toast.makeText(VerifyOtpActivity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
@@ -211,7 +211,7 @@ public class VerifyOtpActivity  extends AppCompatActivity {
 
     private void startRide( ACProgressFlower dialog) {
 
-
+       // dialog.show();
         RequestBody rideId = RequestBody.create(MediaType.parse("txt/plain"), ride_id);
 
 
@@ -222,22 +222,26 @@ public class VerifyOtpActivity  extends AppCompatActivity {
                 Log.e(TAG, "onResponse: " + response.code());
                 Log.e(TAG, "onResponse: " + response.message());
                 Log.e(TAG, "onResponse: " + response.errorBody());
-                if (response.body().getStatus().equals(401)) {
-                    dialog.dismiss();
+                Log.e(TAG, "response.body().getStatus(): " + response.body().getStatus());
+
+                if (response.body().getStatus().equals(200)) {
+                 //   dialog.dismiss();
 
                     String paymentStatus = response.body().getResponse().getPaymentStatus();
                     Log.e(TAG, "onResponse:paymentStatus>>>  "+paymentStatus);
-                    Toast.makeText(VerifyOtpActivity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
+               //     Toast.makeText(VerifyOtpActivity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     Intent start=new Intent(VerifyOtpActivity.this,DropOffActivity.class);
                     start.putExtra("paymentStatus",paymentStatus);
                     start.putExtra("ride_id",ride_id);
                     start.putExtra("amount",response.body().getResponse().getAmount());
+                    start.putExtra("pickup_address",response.body().getResponse().getPickupAddress());
                     startActivity(start);
 
 
                 }else{
-                    dialog.dismiss();
-//                        Toast.makeText(MainActivity.this,"Wrong username or password !!", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "onResponse: else" );
+                 //   dialog.dismiss();
+
                     Toast.makeText(VerifyOtpActivity.this,response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
                 }
@@ -246,7 +250,7 @@ public class VerifyOtpActivity  extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseStartRide> call, Throwable t) {
                 Toast.makeText(VerifyOtpActivity.this,t.getMessage(), Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
+              //  dialog.dismiss();
             }
         });
 

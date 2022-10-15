@@ -10,6 +10,7 @@ import com.example.driverfrenzi.responce.ResponseFetchCarList;
 import com.example.driverfrenzi.responce.ResponseFetchRideHistory;
 import com.example.driverfrenzi.responce.ResponseJobDetails;
 import com.example.driverfrenzi.responce.ResponseJobList;
+import com.example.driverfrenzi.responce.ResponseReferCode;
 import com.example.driverfrenzi.responce.ResponseRegistration;
 import com.example.driverfrenzi.responce.ResponseStartRide;
 
@@ -61,7 +62,9 @@ public interface ApiServiceInterface {
             @Part("license_points") RequestBody conviction_points,
             @Part("license_points_reason") RequestBody conviction_points_reason,
             @Part("convictions") RequestBody conviction,
-            @Part("password") RequestBody passowrd,
+            @Part("password") RequestBody password,
+            @Part("gender") RequestBody gender,
+            @Part("customer_preference") RequestBody customer_preference,
             @Part MultipartBody.Part license_image,
             @Part MultipartBody.Part insurance_certificate
 
@@ -93,6 +96,32 @@ public interface ApiServiceInterface {
 
 
     );
+
+    @Multipart
+    @POST("roaming_radius")
+    Call<ServerGeneralResponse> RoamingRadius(
+            @Part("driver_id") RequestBody driver_id,
+            @Part("roaming_radius") RequestBody roaming_radius
+
+
+
+    );
+
+    @Multipart
+    @POST("driver_availibilty")
+    Call<ServerGeneralResponse> DriverAvailability(
+            @Part("driver_id") RequestBody driver_id,
+            @Part("avaiable_status") RequestBody available_status
+
+    );
+
+    @Multipart
+    @POST("generate_driver_refer_key")
+    Call<ResponseReferCode> GenerateCode(
+            @Part("driver_id") RequestBody driver_id
+
+    );
+
 
     @Multipart
     @POST("contact_submit")
@@ -218,7 +247,9 @@ public interface ApiServiceInterface {
             @Part("insurance_no") RequestBody insurance_no,
             @Part("conviction_points") RequestBody conviction_points,
             @Part("license_points_reason") RequestBody conviction_points_reason,
-     
+            @Part("gender") RequestBody gender,
+            @Part("customer_preference") RequestBody customer_preference,
+
 
 
 

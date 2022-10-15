@@ -102,7 +102,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Thank You monica!"
+                    android:text="Thank You !"
                     android:textColor="@color/very_dark_pink"
                     android:textSize="24sp" />
 

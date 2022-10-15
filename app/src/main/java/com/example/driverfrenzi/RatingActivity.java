@@ -53,9 +53,14 @@ public class RatingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rating);
 
 
+
         rideId = getIntent().getStringExtra("ride_id");
         userId = getIntent().getStringExtra("user_id");
         driverId = getIntent().getStringExtra("driver_id");
+
+        Log.e(TAG, "onCreate: rideId"+rideId );
+        Log.e(TAG, "onCreate: userId"+userId );
+        Log.e(TAG, "onCreate: driverId"+driverId );
 
         btn_back=findViewById(R.id.btn_back);
         tv_skip=findViewById(R.id.tv_skip);

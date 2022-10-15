@@ -280,6 +280,9 @@ public class ReachDestinationActivity extends AppCompatActivity  implements OnMa
         }
         googleMap.addMarker(new MarkerOptions().position(a).title("Me").icon(BitmapDescriptorFactory.fromResource(R.drawable.map_j)));
 
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+        googleMap.getUiSettings().setScrollGesturesEnabled(true);
+        googleMap.getUiSettings().setZoomGesturesEnabled(true);
 // Uses a custom icon.
 
 //        mMap.setOnCircleClickListener(new GoogleMap.OnCircleClickListener() {

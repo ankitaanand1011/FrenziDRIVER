@@ -35,7 +35,7 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Drop"
+            android:text="Drop Off"
             android:textColor="@color/MidnightBlue"
             android:textSize="18sp" />
 
@@ -54,6 +54,7 @@
             android:layout_height="80dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:visibility="gone"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/rectangle_curve_midnight_blue">
@@ -152,18 +153,18 @@
 
 
                     <TextView
+                        android:id="@+id/tv_pick_add_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Wallsend"
                         android:textColor="@color/Gray"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
+                        android:id="@+id/tv_pick_add_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="Newcastle upon Tyne, NE28 8EL"
                         android:textColor="@color/Gray"
                         android:textSize="@dimen/_12sdp" />
 
@@ -287,12 +288,13 @@
                         android:textSize="12sp" />
 
                     <TextView
+                        android:id="@+id/tv_amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/fare"
                         android:layout_centerInParent="true"
-                        android:fontFamily="@font/poppins_bold"
 
+                        android:fontFamily="@font/poppins_bold"
                         android:text="£ 25.00"
                         android:textColor="@color/MidnightBlue"
                         android:textSize="14sp" />

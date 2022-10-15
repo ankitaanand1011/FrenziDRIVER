@@ -43,6 +43,7 @@ public class JobDetailsActivity extends AppCompatActivity {
     CircularImageView ci_cus_image;
     double current_lat, current_long;
     double  pick_lat,pick_long;
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -120,6 +121,8 @@ public class JobDetailsActivity extends AppCompatActivity {
                 Intent pick=new Intent(JobDetailsActivity.this,PickupActivity.class);
                 pick.putExtra("pickup_lat",pick_lat);
                 pick.putExtra("pickup_long",pick_long);
+                pick.putExtra("drop_lat",drop_lat);
+                pick.putExtra("drop_long",drop_long);
                 pick.putExtra("current_lat",current_lat);
                 pick.putExtra("current_long",current_long);
                 pick.putExtra("ride_id",ride_id);

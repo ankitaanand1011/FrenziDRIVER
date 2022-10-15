@@ -30,13 +30,13 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.driverfrenzi.adapter.AdapterJobRequest;
-import com.example.driverfrenzi.adapter.AdapterRideHistory;
 import com.example.driverfrenzi.api.RestClient;
-import com.example.driverfrenzi.responce.ResponseFetchRideHistory;
+import com.example.driverfrenzi.api.ServerGeneralResponse;
 import com.example.driverfrenzi.responce.ResponseJobDetails;
 import com.example.driverfrenzi.responce.ResponseJobList;
 import com.github.angads25.toggle.interfaces.OnToggledListener;
@@ -69,7 +69,7 @@ public class JobRequestActivity extends AppCompatActivity {
     ActionBarDrawerToggle drawerToggle;
     AdapterJobRequest adapterJobRequest;
     RecyclerView rv_job_request;
-    String driver_Name, driver_Image,driver_id;
+    String driver_Name, driver_Image,driver_id,driver_availability;
     private final List<ResponseJobList.Response> JobList = new ArrayList<>();
     double current_lat, current_long;
     String rideId;
@@ -98,6 +98,7 @@ public class JobRequestActivity extends AppCompatActivity {
         driver_Name = spp.getString(Constant.DRIVER_NAME, "");
         driver_Image = spp.getString(Constant.DRIVER_IMAGE, "");
         driver_id = spp.getString(Constant.DRIVER_ID, "");
+        driver_availability = spp.getString(Constant.DRIVER_AVAILABILITY, "");
 
         current_lat = getIntent().getDoubleExtra("current_lat",0.0);
         current_long = getIntent().getDoubleExtra("current_long",0.0);
@@ -133,15 +134,19 @@ public class JobRequestActivity extends AppCompatActivity {
         rv_job_request.setItemAnimator(new DefaultItemAnimator());
         rv_job_request.setAdapter(adapterJobRequest);
 
+        if(driver_availability.equals("yes")){
 
-        switch_old.setOn(true);
+            switch_old.setOn(true);
+        }
+       // switch_old.setOn(true);
         switch_old.setOnToggledListener(new OnToggledListener() {
             @Override
             public void onSwitched(ToggleableView toggleableView, boolean isOn) {
                 if(isOn==false){
-
-                    Intent offline=new Intent(JobRequestActivity.this,OfflineActivity.class);
-                    startActivity(offline);
+                    String available = "no" ;
+                    driverAvailability(available);
+                  /*  Intent offline=new Intent(JobRequestActivity.this,OfflineActivity.class);
+                    startActivity(offline);*/
 
 
                 }
@@ -252,6 +257,10 @@ public class JobRequestActivity extends AppCompatActivity {
                 acc.putExtra("ride_id",rideId);
                    acc.putExtra("current_lat",current_lat);
                   acc.putExtra("current_long",current_long);
+                  acc.putExtra("pickup_lat",pickup_lat);
+                  acc.putExtra("pickup_long",pickup_long);
+                  acc.putExtra("drop_lat",drop_lat);
+                  acc.putExtra("drop_long",drop_long);
                 activity.startActivity(acc);
 
                 } else  {
@@ -425,7 +434,7 @@ public class JobRequestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 closeDrawer();
-                Intent intent1=new Intent(JobRequestActivity.this,ReferandEarn.class);
+                Intent intent1=new Intent(JobRequestActivity.this, ReferAndEarn.class);
                 startActivity(intent1);
             }
         });
@@ -532,5 +541,70 @@ public class JobRequestActivity extends AppCompatActivity {
         });
         dialog.show();
     }
+    private void driverAvailability(  String available) {
 
+        ACProgressFlower dialog = new ACProgressFlower.Builder(JobRequestActivity.this)
+                .direction(ACProgressConstant.DIRECT_CLOCKWISE)
+                .themeColor(Color.WHITE)
+                .fadeColor(Color.BLACK).build();
+        dialog.show();
+
+
+        RequestBody driverId = RequestBody.create(MediaType.parse("txt/plain"), driver_id);
+        RequestBody available_status  = RequestBody.create(MediaType.parse("txt/plain"), available);
+        //  RequestBody new_password = RequestBody.create(MediaType.parse("txt/plain"), edt_password.getText().toString().trim());
+
+
+        RestClient.getClient().DriverAvailability(driverId,available_status).enqueue(new Callback<ServerGeneralResponse>() {
+            @Override
+            public void onResponse(Call<ServerGeneralResponse> call, Response<ServerGeneralResponse> response) {
+                Log.e(TAG, "onResponse: Code :" + response.body());
+                Log.e(TAG, "onResponse: " + response.code());
+                Log.e(TAG, "onResponse: " + response.errorBody());
+
+                if(!response.body().getStatus().equals(500)){
+
+                    if (response.body().getStatus().equals(200)) {
+                        dialog.dismiss();
+
+
+                        SharedPreferences sp = getSharedPreferences(Constant.DRIVER_PREF, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sp.edit();
+                        assert response.body() != null;
+
+                        editor.putString(Constant.DRIVER_AVAILABILITY, "no");
+                        editor.apply();
+
+                        Intent offline=new Intent(JobRequestActivity.this,OfflineActivity.class);
+                        startActivity(offline);
+                        finish();
+
+
+                    } else {
+                        dialog.dismiss();
+//
+
+                    }
+                }else{
+                    dialog.dismiss();
+                    Toast.makeText(JobRequestActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+
+            @Override
+            public void onFailure(Call<ServerGeneralResponse> call, Throwable t) {
+
+                dialog.dismiss();
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FetchJobList();
+
+    }
 }

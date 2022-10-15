@@ -34,7 +34,7 @@
             android:name=".RideHistory"
             android:exported="true" />
         <activity
-            android:name=".ReferandEarn"
+            android:name=".ReferAndEarn"
             android:exported="true" />
         <activity
             android:name=".Aboutus"

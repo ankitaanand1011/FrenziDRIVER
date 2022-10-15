@@ -170,6 +170,10 @@ public class  OnTheWayActivity extends AppCompatActivity implements OnMapReadyCa
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
                 a, 18f);
         mMap.animateCamera(cameraUpdate);
+
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+        googleMap.getUiSettings().setScrollGesturesEnabled(true);
+        googleMap.getUiSettings().setZoomGesturesEnabled(true);
         MapsInitializer.initialize(this);
 //        addCustomMarker();
 

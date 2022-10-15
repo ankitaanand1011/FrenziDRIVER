@@ -650,6 +650,107 @@
                             android:textSize="@dimen/_14sdp" />
 
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:textAllCaps="true"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textColor="@color/IndianRed"
+                            android:textSize="@dimen/_16sdp"
+                            android:text="Gender"
+                            />
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <RadioButton
+                                android:id="@+id/rb_male"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/MidnightBlue"
+                                android:checked="true"
+                                android:buttonTint="@color/dark_pink"
+                                android:gravity="center_vertical"
+                                android:textSize="@dimen/_14sdp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="Male"/>
+                            <RadioButton
+                                android:id="@+id/rb_female"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:buttonTint="@color/dark_pink"
+                                android:gravity="center_vertical"
+                                android:textColor="@color/MidnightBlue"
+                                android:textSize="@dimen/_14sdp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="Female"/>
+                        </RadioGroup>
+
+
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:text="Customer Preference"
+                            android:textAllCaps="true"
+                            android:fontFamily="@font/poppins_bold"
+                            android:textColor="@color/IndianRed"
+                            android:textSize="@dimen/_16sdp" />
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:weightSum="3">
+
+                            <RadioButton
+                                android:id="@+id/rb_male_female"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/MidnightBlue"
+                                android:checked="true"
+                                android:textSize="@dimen/_14sdp"
+                                android:buttonTint="@color/dark_pink"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="Male &amp; Female"/>
+                            <RadioButton
+                                android:id="@+id/rb_female_only"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:textSize="@dimen/_14sdp"
+                                android:buttonTint="@color/dark_pink"
+                                android:gravity="center_vertical"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/MidnightBlue"
+                                android:text="Female Only"/>
+                            <RadioButton
+                                android:id="@+id/rb_male_only"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:visibility="gone"
+                                android:gravity="center_vertical"
+                                android:textSize="@dimen/_14sdp"
+                                android:buttonTint="@color/dark_pink"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/MidnightBlue"
+                                android:text="Male Only"/>
+                        </RadioGroup>
+
+
                     </LinearLayout>
 
                     <TextView

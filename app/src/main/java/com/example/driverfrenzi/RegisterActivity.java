@@ -40,6 +40,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -99,8 +100,9 @@ public class RegisterActivity extends AppCompatActivity {
     String profile_image_str;
     String license_image_selected = "no", insurance_image_selected = "no";
     ImageView iv_back,iv_add_image,iv_license,iv_insurance;
-
-
+    String gender = "male";
+    String customer_prefer = "male_female";
+    RadioButton rb_male, rb_female, rb_male_female, rb_female_only,rb_male_only;
     private static final String TAG = "Reg";
     DatePickerDialog.OnDateSetListener mDateListener;
 
@@ -154,11 +156,31 @@ public class RegisterActivity extends AppCompatActivity {
         edt_user_exp = findViewById(R.id.edt_user_exp);
         edt_user_ins_number = findViewById(R.id.edt_user_ins_number);
 
+        rb_male=findViewById(R.id.rb_male);
+        rb_female=findViewById(R.id.rb_female);
+        rb_male_female=findViewById(R.id.rb_male_female);
+        rb_female_only=findViewById(R.id.rb_female_only);
+        rb_male_only=findViewById(R.id.rb_male_only);
+
         imagePicker = new ImagePicker(RegisterActivity.this);
 
         button_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (rb_male.isChecked()) {
+                    gender = "male";
+                } else if (rb_female.isChecked()) {
+                    gender = "female";
+                }
+
+                if (rb_male_female.isChecked()) {
+                    customer_prefer = "any";
+                } else if (rb_female_only.isChecked()) {
+                    customer_prefer = "female_only";
+                } else if (rb_male_only.isChecked()) {
+                    customer_prefer = "male_only";
+                }
                 Registration();
             }
         });
@@ -694,6 +716,8 @@ public class RegisterActivity extends AppCompatActivity {
             RequestBody post_conviction_points_reason = RequestBody.create(MediaType.parse("txt/plain"), edt_con_points_reason.getText().toString().trim());
             RequestBody post_conviction = RequestBody.create(MediaType.parse("txt/plain"), "test");
             RequestBody post_Password = RequestBody.create(MediaType.parse("txt/plain"), edt_user_password.getText().toString().trim());
+            RequestBody post_Gender = RequestBody.create(MediaType.parse("txt/plain"), gender);
+            RequestBody post_customer_preference = RequestBody.create(MediaType.parse("txt/plain"), customer_prefer);
 
 
             MultipartBody.Part lic_image= MultipartBody.Part.createFormData(
@@ -716,7 +740,8 @@ public class RegisterActivity extends AppCompatActivity {
                     post_address_lat,post_address_long,post_Postcode,
                      Vtype, post_Vnumber, post_vehicle_make, post_License,
                     post_LIC_exp,post_InsNo,post_conviction_points,post_conviction_points_reason,
-                    post_conviction,post_Password,lic_image,ins_image
+                    post_conviction, post_Password,post_Gender,post_customer_preference,
+                   lic_image,ins_image
 
                     ).enqueue(new Callback<ResponseRegistration>() {
                 @Override

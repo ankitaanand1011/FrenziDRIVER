@@ -134,6 +134,16 @@ public class ProfileResponse {
         @Expose
         public String image;
 
+        @SerializedName("gender")
+        @Expose
+        public String gender;
+
+        @SerializedName("customer_preference")
+        @Expose
+        public String customer_preference;
+
+
+
 
 
 
@@ -146,7 +156,7 @@ public class ProfileResponse {
                         String license_image, String insurance_no,
                         String insurance_certificate, Object license_points,
                         Object license_points_reason,
-                        String convictions, String image) {
+                        String convictions, String image, String gender, String customer_preference) {
             this.driver_id = driver_id;
             this.driver_name = driver_name;
             this.name = name;
@@ -169,6 +179,8 @@ public class ProfileResponse {
             this.license_points_reason = license_points_reason;
             this.convictions = convictions;
             this.image = image;
+            this.gender = gender;
+            this.customer_preference = customer_preference;
         }
 
         public Integer getDriver_id() {
@@ -345,6 +357,22 @@ public class ProfileResponse {
 
         public void setImage(String image) {
             this.image = image;
+        }
+
+        public String getGender() {
+            return gender;
+        }
+
+        public void setGender(String gender) {
+            this.gender = gender;
+        }
+
+        public String getCustomer_preference() {
+            return customer_preference;
+        }
+
+        public void setCustomer_preference(String customer_preference) {
+            this.customer_preference = customer_preference;
         }
     }
 }

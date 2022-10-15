@@ -24,7 +24,7 @@
                     android:id="@+id/backar"
                     android:layout_width="25dp"
                     android:layout_height="60dp"
-                    android:layout_marginLeft="25dp">
+                    android:layout_marginStart="25dp">
 
 
                     <ImageView
@@ -39,7 +39,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_toRightOf="@id/backar"
                     android:fontFamily="@font/poppins_medium"
@@ -57,9 +57,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/Regi"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
                 android:background="@drawable/rectangle_white_curved"
                 android:orientation="vertical"
                 android:paddingBottom="35dp">
@@ -69,7 +69,7 @@
                     android:id="@+id/fname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="35dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Full Name"
@@ -80,23 +80,23 @@
                     android:id="@+id/edt_user_name"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Name"
-                    android:textColorHint="@color/Gray"
-                    android:textColor="@color/black"
                     android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/Gray"
                     android:textSize="14sp" />
 
                 <View
                     android:id="@+id/viewthree"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@color/LightGrey"
                     android:visibility="gone" />
 
@@ -105,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewfive"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Phone Number"
@@ -116,24 +116,24 @@
                     android:id="@+id/edt_user_phone"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Mobile Number"
                     android:inputType="number"
-                    android:textColorHint="@color/Gray"
-                    android:textColor="@color/black"
                     android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/Gray"
                     android:textSize="14sp" />
 
                 <View
                     android:id="@+id/viewsix"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@color/LightGrey"
                     android:visibility="gone" />
 
@@ -143,7 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewfour"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Email"
@@ -154,24 +154,24 @@
                     android:id="@+id/edt_user_email"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Email"
-                    android:textColorHint="@color/Gray"
-                    android:textColor="@color/black"
                     android:inputType="textEmailAddress"
                     android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/Gray"
                     android:textSize="14sp" />
 
                 <View
                     android:id="@+id/viewfive"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@color/LightGrey"
                     android:visibility="gone" />
 
@@ -181,7 +181,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewthree"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Address"
@@ -193,23 +193,23 @@
                     android:id="@+id/edt_user_add"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Address"
-                    android:textColorHint="@color/Gray"
-                    android:textColor="@color/black"
                     android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/Gray"
                     android:textSize="14sp" />
 
                 <View
                     android:id="@+id/viewfour"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@color/LightGrey"
                     android:visibility="gone" />
 
@@ -218,7 +218,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewthree"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Post code"
@@ -229,23 +229,23 @@
                     android:id="@+id/edt_user_postcode"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Postcode"
-                    android:textColorHint="@color/Gray"
-                    android:textColor="@color/black"
                     android:inputType="textPhonetic"
                     android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/Gray"
                     android:textSize="14sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@color/LightGrey"
                     android:visibility="gone" />
 
@@ -253,7 +253,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewthree"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Vehicle Make"
@@ -264,21 +264,21 @@
                     android:id="@+id/edt_user_vehicle_make"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Vehicle Make"
-                    android:textColorHint="@color/Gray"
-                    android:textColor="@color/black"
                     android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/Gray"
                     android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewthree"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Vehicle Type"
@@ -289,9 +289,9 @@
                     android:id="@+id/rl_vehicle_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:background="@drawable/spinner_bg_pink"
                     android:padding="@dimen/_10sdp">
@@ -323,9 +323,9 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@color/LightGrey"
                     android:visibility="gone" />
 
@@ -333,7 +333,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewthree"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Vehicle Number"
@@ -344,22 +344,22 @@
                     android:id="@+id/edt_user_vehicle_no"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:textColorHint="@color/Gray"
-                    android:textColor="@color/black"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Vehicle Registration No"
                     android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/Gray"
                     android:textSize="14sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@color/LightGrey"
                     android:visibility="gone" />
 
@@ -367,7 +367,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewthree"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="License"
@@ -378,23 +378,23 @@
                     android:id="@+id/edt_user_license"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter License no."
-                    android:textColorHint="@color/Gray"
-                    android:textColor="@color/black"
                     android:inputType="textPhonetic"
                     android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/Gray"
                     android:textSize="14sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@color/LightGrey"
                     android:visibility="gone" />
 
@@ -402,12 +402,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewthree"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="License Expiry"
-                    android:textColorHint="@color/Gray"
                     android:textColor="@color/MidnightBlue"
+                    android:textColorHint="@color/Gray"
                     android:textSize="15sp" />
 
 
@@ -415,24 +415,24 @@
                     android:id="@+id/edt_user_exp"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/rect_gray_edt_box"
-                    android:hint="DD/MM/YYYY"
-                    android:gravity="center_vertical"
-                    android:maxEms="10"
                     android:editable="false"
-                    android:textColorHint="@color/Gray"
-                    android:textColor="@color/black"
+                    android:gravity="center_vertical"
+                    android:hint="DD/MM/YYYY"
+                    android:maxEms="10"
                     android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/Gray"
                     android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewthree"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="License Pic"
@@ -443,9 +443,9 @@
                     android:id="@+id/rl_license_image"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_150sdp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/et_bg_white"
                     android:padding="@dimen/_5sdp">
 
@@ -481,9 +481,9 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@color/LightGrey"
                     android:visibility="gone" />
 
@@ -491,7 +491,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewthree"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Insurance Number"
@@ -502,22 +502,22 @@
                     android:id="@+id/edt_user_ins_number"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Insurance Number"
-                    android:textColorHint="@color/Gray"
-                    android:textColor="@color/black"
                     android:inputType="number"
                     android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/Gray"
                     android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewthree"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Insurance Pic"
@@ -565,9 +565,9 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@color/LightGrey"
                     android:visibility="gone" />
 
@@ -575,7 +575,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewsix"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Password"
@@ -586,22 +586,22 @@
                     android:id="@+id/edt_user_password"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Password"
-                    android:textColorHint="@color/Gray"
-                    android:textColor="@color/black"
                     android:inputType="textPassword"
                     android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/Gray"
                     android:textSize="14sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewsix"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Conviction Points"
@@ -612,15 +612,15 @@
                     android:id="@+id/edt_conviction_points"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/rect_gray_edt_box"
                     android:hint="Conviction Point"
                     android:inputType="text"
-                    android:textColorHint="@color/Gray"
-                    android:textColor="@color/black"
                     android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/Gray"
                     android:textSize="14sp" />
 
                 <TextView
@@ -638,25 +638,131 @@
                     android:id="@+id/edt_con_points_reason"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
                     android:background="@drawable/rect_gray_edt_box"
                     android:hint="Enter Reasons"
                     android:inputType="text"
                     android:paddingLeft="10dp"
-                    android:textColorHint="@color/Gray"
                     android:textColor="@color/black"
+                    android:textColorHint="@color/Gray"
                     android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Gender"
+                    android:textColor="@color/MidnightBlue"
+                    android:textSize="15sp" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RadioButton
+                        android:id="@+id/rb_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/MidnightBlue"
+                        android:checked="true"
+                        android:buttonTint="@color/dark_pink"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_14sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Male"/>
+                    <RadioButton
+                        android:id="@+id/rb_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/dark_pink"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/MidnightBlue"
+                        android:textSize="@dimen/_14sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Female"/>
+                </RadioGroup>
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Customer Preference"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/MidnightBlue"
+                    android:textSize="15sp" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="vertical"
+                    android:weightSum="3">
+
+                    <RadioButton
+                        android:id="@+id/rb_male_female"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/MidnightBlue"
+                        android:checked="true"
+                        android:textSize="@dimen/_14sdp"
+                        android:buttonTint="@color/dark_pink"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Male &amp; Female"/>
+                    <RadioButton
+                        android:id="@+id/rb_female_only"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/_14sdp"
+                        android:buttonTint="@color/dark_pink"
+                        android:gravity="center_vertical"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/MidnightBlue"
+                        android:text="Female Only"/>
+                    <RadioButton
+                        android:id="@+id/rb_male_only"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:textSize="@dimen/_14sdp"
+                        android:visibility="gone"
+                        android:buttonTint="@color/dark_pink"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/MidnightBlue"
+                        android:text="Male Only"/>
+                </RadioGroup>
+
+
+
 
                 <View
                     android:id="@+id/viewseven"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
 
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@color/LightGrey" />
 
                 <RelativeLayout
@@ -670,7 +776,7 @@
                         android:id="@+id/sign"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="15dp"
                         android:layout_toStartOf="@+id/tp"
                         android:fontFamily="@font/poppins_medium"
@@ -682,11 +788,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/sign"
-                        android:layout_marginLeft="20dp"
-                        android:visibility="gone"
+                        android:layout_marginStart="20dp"
                         android:fontFamily="@font/poppins_semibold"
                         android:text="Conditions and Privacy Policy"
-                        android:textColor="@color/Gray" />
+                        android:textColor="@color/Gray"
+                        android:visibility="gone" />
 
                     <ImageView
                         android:id="@+id/tp"
@@ -694,7 +800,7 @@
                         android:layout_height="30dp"
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="10dp"
-                        android:layout_marginRight="15dp"
+                        android:layout_marginEnd="15dp"
                         android:background="@drawable/blue_toggle" />
 
                 </RelativeLayout>
@@ -703,27 +809,15 @@
                     android:id="@+id/main_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/check_layout"
-                    android:layout_centerInParent="true"
-                    android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
-                    android:gravity="center_horizontal"
-                    android:weightSum="1">
+                    android:gravity="center_horizontal">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="2.24">
 
                         <Button
                             android:id="@+id/button_register"
                             android:layout_width="wrap_content"
                             android:layout_height="50dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginBottom="20dp"
                             android:backgroundTint="@color/MidnightBlue"
                             android:elevation="5dp"
                             android:paddingLeft="20dp"
@@ -733,24 +827,24 @@
                             android:textColor="@color/white"
                             android:translationZ="5dp" />
 
-                    </RelativeLayout>
+
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/main_layout"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:weightSum="2">
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="15dp"
+                    android:weightSum="2"
+                    android:baselineAligned="false">
 
                     <LinearLayout
                         android:id="@+id/manage_ll"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginEnd="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/rect_blue"
                         android:foreground="@drawable/btn_rect_ripple_effectwhite"
@@ -759,8 +853,8 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="5dp"
                             android:src="@drawable/facebook" />
 
                         <TextView
@@ -776,7 +870,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="40dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/rect_white"
                         android:foreground="@drawable/btn_rect_ripple_effectwhite"
@@ -785,8 +879,8 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="8dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="8dp"
                             android:src="@drawable/google" />
 
                         <TextView
@@ -799,30 +893,6 @@
 
                     </LinearLayout>
 
-                    <!--            <LinearLayout-->
-                    <!--                android:id="@+id/manage_ll"-->
-                    <!--                android:layout_weight="1"-->
-                    <!--                android:layout_width="0dp"-->
-                    <!--                android:layout_height="@dimen/height_40"-->
-                    <!--                android:background="@drawable/rect_black_btn"-->
-                    <!--                android:foreground="@drawable/btn_rect_ripple_effectwhite"-->
-                    <!--                android:layout_marginTop="@dimen/margin_10"-->
-                    <!--                android:gravity="center">-->
-
-                    <!--                <TextView-->
-                    <!--                    android:layout_width="wrap_content"-->
-                    <!--                    android:layout_height="wrap_content"-->
-                    <!--                    android:textColor="@color/colorwhite"-->
-                    <!--                    android:textSize="@dimen/txt_13"-->
-                    <!--                    android:text="@string/manage_txt"-->
-                    <!--                    android:fontFamily="@font/roboto_bold_webfont"/>-->
-
-                    <!--                <ImageView-->
-                    <!--                    android:layout_width="@dimen/height_12"-->
-                    <!--                    android:layout_height="@dimen/height_12"-->
-                    <!--                    android:src="@drawable/rightw_img"-->
-                    <!--                    android:layout_marginLeft="@dimen/margin_10"/>-->
-                    <!--            </LinearLayout>-->
 
 
                 </LinearLayout>
@@ -855,7 +925,7 @@
                     android:layout_toRightOf="@id/alreadyaccount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp">
+                    android:layout_marginStart="5dp">
 
                     <TextView
                         android:id="@+id/signin"
