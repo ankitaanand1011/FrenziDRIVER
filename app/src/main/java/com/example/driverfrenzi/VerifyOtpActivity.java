@@ -29,6 +29,8 @@ import java.util.Objects;
 
 import cc.cloudist.acplibrary.ACProgressConstant;
 import cc.cloudist.acplibrary.ACProgressFlower;
+import in.aabhasjindal.otptextview.OTPListener;
+import in.aabhasjindal.otptextview.OtpTextView;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -42,7 +44,8 @@ public class VerifyOtpActivity  extends AppCompatActivity {
     EditText onecode,twocode,three_code,forth_code;
     private static final String TAG = "OtpPage";
     String ride_id;
-
+   // String OTP;
+   // OtpTextView otpTextView;
     @Override
     protected void onPause() {
         super.onPause();
@@ -60,6 +63,7 @@ public class VerifyOtpActivity  extends AppCompatActivity {
         twocode=findViewById(R.id.twocode);
         three_code=findViewById(R.id.three_code);
         forth_code=findViewById(R.id.forth_code);
+       // otpTextView = findViewById(R.id.otp_view);
 
 
         ride_id = getIntent().getStringExtra("ride_id");
@@ -89,6 +93,21 @@ public class VerifyOtpActivity  extends AppCompatActivity {
                 startActivity(start);*/
             }
         });
+
+       /* otpTextView.setOtpListener(new OTPListener() {
+            @Override
+            public void onInteractionListener() {
+                // fired when user types something in the Otpbox
+            }
+            @Override
+            public void onOTPComplete(String otp) {
+                // fired when user has entered the OTP fully.
+                OTP = otp;
+               // Toast.makeText(VerifyOtpActivity.this, "The OTP is " + otp,  Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
+
         onecode.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

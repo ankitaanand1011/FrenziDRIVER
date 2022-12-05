@@ -154,8 +154,8 @@ public interface ApiServiceInterface {
     @POST("driver_ride_history")
     Call<ResponseFetchRideHistory> FetchRideHistory(
             @Part("driver_id") RequestBody driver_id,
-            @Part("ride_date") RequestBody ride_date
-
+            @Part("from_date") RequestBody fromDate,
+            @Part("to_date") RequestBody toDate
 
     );
 
@@ -226,6 +226,15 @@ public interface ApiServiceInterface {
             @Part("payment_status") RequestBody payment_status
     );
 
+    @Multipart
+    @POST("extra_pay")
+    Call<ServerGeneralResponse> ExtraPay(
+            @Part("ride_id") RequestBody ride_id,
+            @Part("drop_off_charges") RequestBody drop_off_charges,
+            @Part("toll_charges") RequestBody toll_charges,
+            @Part("luggage_charges") RequestBody luggage_charges
+    );
+
 
 
     @Multipart
@@ -266,273 +275,5 @@ public interface ApiServiceInterface {
 
 
 
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceLogin> Login(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("email") RequestBody email,
-//            @Part("password") RequestBody pass
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceGeneralWithUserId> SubmitPersonalProfile(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("gender") RequestBody gender,
-//            @Part("age") RequestBody age,
-//            @Part("height") RequestBody height,
-//            @Part("weight") RequestBody weight,
-//            @Part("allergies") RequestBody aller,
-//            @Part("foodddislike") RequestBody flike,
-//            @Part("activity_lavel") RequestBody level
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceSubmitPaymentData> SubmitPaymentData(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("payment_amt") RequestBody gender,
-//            @Part("package_id") RequestBody age,
-//            @Part("tran_id") RequestBody height,
-//            @Part("country") RequestBody country,
-//            @Part("package_amt") RequestBody weiamtght,
-//            @Part("coupon_code") RequestBody code,
-//            @Part("coupon_discount") RequestBody discount
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<com.example.nuapplication.responce.ServerGeneralResponse> SubmitCompitition_Image(
-//
-//            @Part MultipartBody.Part imageFile,
-//
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("name") RequestBody gender,
-//            @Part("type") RequestBody age
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceFetchMeal6Week> FetchMeal6Week(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("week") RequestBody gender,
-//            @Part("day") RequestBody age,
-//            @Part("mealTypeId") RequestBody height
-//    );
-//
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceFetchMySelectedMeal6Week> FetchMySelectedMeal6Week(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("week") RequestBody gender,
-//            @Part("day") RequestBody age,
-//            @Part("mealTypeId") RequestBody height
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceSelectMeal6week> SelectMeal6Week(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("week") RequestBody week,
-//            @Part("day") RequestBody day,
-//            @Part("mealTypeId") RequestBody type,
-//            @Part("meal_id") RequestBody id,
-//            @Part("mealCalorie") RequestBody cal
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponcefetchDayListOne2One> FetchDayListOne2One(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponcefetchDayListOne2One> FetchDayListOne2OneWorkout(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceFetchMyMealOne2one> FetchMealOne2One(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("masterId") RequestBody gender,
-//            @Part("mealTypeId") RequestBody age
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceRecipeIngradients> FetchRecipeIngradients(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("meal_day_id") RequestBody gender,
-//            @Part("user_meal_id") RequestBody age,
-//            @Part("meal_id") RequestBody meal_id
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceRecipeIngradients> FetchRecipeIngradients6Week(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("meal_id") RequestBody gender,
-//            @Part("mealCalorie") RequestBody age
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceWorkoutCategory6week> FetchWorkoutCategory6Week(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("week") RequestBody gender
-////            @Part("day") RequestBody age
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceSelectWorkout6Week> SubmitWorkoutSelection6Week(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("workout_day_id") RequestBody gender,
-//            @Part("user_workout_id") RequestBody age
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceFetchWorkoutList6Week> FetchWorkoutList6Week(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("workout_id") RequestBody w_id
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResonceFetchWorkoutDetails> FetchWorkoutDetails(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("excerciseId") RequestBody user_id
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceFetchWorkoutlistCategoryOne2one> FetchWorkoutCategoryOne2One(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("masterId") RequestBody gender
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceClassJordanAvailability> FetchAvailability(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("month") RequestBody gg,
-//            @Part("year") RequestBody year
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceFetchTimeSlotList> FetchAvailabilitySlot(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("available_date") RequestBody gg
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceSetCalBack> SubmitJordanAppoinment(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("slot_id") RequestBody gender
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<Responcemessege> FetchMessegeList(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id
-//    );
-//
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceSetUserImage> UpdateProfileImage(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part MultipartBody.Part wash_image
-//
-//            );
-//
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceUpdateProfileData> UpdateProfileDetails(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("age") RequestBody age,
-//            @Part("height") RequestBody height,
-//            @Part("weight") RequestBody weight,
-//            @Part("gender") RequestBody gender,
-//            @Part("activity_lavel") RequestBody activity_level,
-//            @Part("foodddislike") RequestBody foodDislike,
-//            @Part("allergies") RequestBody allergies
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponcEsendSms> SendMessege(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id,
-//            @Part("message") RequestBody age,
-//            @Part("sender") RequestBody height
-//    );
-//
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceFetchProfileDetails> FetchProfileDetails(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody id
-//    );
-//
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceApplyCoumpon> CouponApply(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("coupon_code") RequestBody user_id,
-//            @Part("package_id") RequestBody type
-//
-//    );
-//
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceValidatePackage> validate(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key
-//
-//    );
-//
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceFetchMainMessegeList> FetchMainMessegeListAdmin(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key
-//    );
-//    @Multipart
-//    @POST("services")
-//    Call<ResponceChangeMessageStatus> ChangeMessageStatus(
-//            @Part("action") RequestBody action,
-//            @Part("api_key") RequestBody key,
-//            @Part("cust_id") RequestBody user_id
-//
-//    );
+
 }

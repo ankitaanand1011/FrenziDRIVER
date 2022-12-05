@@ -9,41 +9,51 @@
     >
 
 
-    <ImageView
-        android:id="@+id/img"
-        android:layout_width="wrap_content"
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
-        android:src="@drawable/logo" />
-
-    <TextView
-        android:id="@+id/welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/img"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="20dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Welcome"
-        android:textColor="@color/White"
-        android:textSize="35sp" />
-
-    <Button
-        android:id="@+id/start_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:layout_below="@id/welcome"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/MidnightBlue"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:text="login to continue"
-        android:textColor="@color/White"
-        android:textSize="14sp" />
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
 
 
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_350sdp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Welcome"
+            android:textColor="@color/White"
+            android:textSize="35sp" />
+
+        <Button
+            android:id="@+id/start_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_below="@id/welcome"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/MidnightBlue"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:text="login to continue"
+            android:textColor="@color/White"
+            android:textSize="14sp" />
+
+
+
+    </RelativeLayout>
 
 </RelativeLayout>
 

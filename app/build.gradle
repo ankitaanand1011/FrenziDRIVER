@@ -68,5 +68,6 @@ dependencies {
 
     //Dexter Runtime Permissions
     implementation 'com.karumi:dexter:6.2.3'
+    implementation 'com.github.aabhasr1:OtpView:v1.1.2'
 
 }

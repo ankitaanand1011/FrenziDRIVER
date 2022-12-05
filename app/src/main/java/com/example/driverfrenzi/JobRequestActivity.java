@@ -277,6 +277,74 @@ public class JobRequestActivity extends AppCompatActivity {
         });
     }
 
+    private void driverAvailability(  String available) {
+
+        ACProgressFlower dialog = new ACProgressFlower.Builder(JobRequestActivity.this)
+                .direction(ACProgressConstant.DIRECT_CLOCKWISE)
+                .themeColor(Color.WHITE)
+                .fadeColor(Color.BLACK).build();
+        dialog.show();
+
+
+        RequestBody driverId = RequestBody.create(MediaType.parse("txt/plain"), driver_id);
+        RequestBody available_status  = RequestBody.create(MediaType.parse("txt/plain"), available);
+        //  RequestBody new_password = RequestBody.create(MediaType.parse("txt/plain"), edt_password.getText().toString().trim());
+
+
+        RestClient.getClient().DriverAvailability(driverId,available_status).enqueue(new Callback<ServerGeneralResponse>() {
+            @Override
+            public void onResponse(Call<ServerGeneralResponse> call, Response<ServerGeneralResponse> response) {
+                Log.e(TAG, "onResponse: Code :" + response.body());
+                Log.e(TAG, "onResponse: " + response.code());
+                Log.e(TAG, "onResponse: " + response.errorBody());
+
+                if(!response.body().getStatus().equals(500)){
+
+                    if (response.body().getStatus().equals(200)) {
+                        dialog.dismiss();
+
+
+                        SharedPreferences sp = getSharedPreferences(Constant.DRIVER_PREF, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sp.edit();
+                        assert response.body() != null;
+
+                        editor.putString(Constant.DRIVER_AVAILABILITY, "no");
+                        editor.apply();
+
+                        Intent offline=new Intent(JobRequestActivity.this,OfflineActivity.class);
+                        startActivity(offline);
+                        finish();
+
+
+                    } else {
+                        dialog.dismiss();
+//
+
+                    }
+                }else{
+                    dialog.dismiss();
+                    Toast.makeText(JobRequestActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+
+            @Override
+            public void onFailure(Call<ServerGeneralResponse> call, Throwable t) {
+
+                dialog.dismiss();
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FetchJobList();
+
+    }
+
+
     public GeoPoint getLocationFromAddress1(String strAddress) {
 
         Geocoder coder = new Geocoder(this);
@@ -541,70 +609,7 @@ public class JobRequestActivity extends AppCompatActivity {
         });
         dialog.show();
     }
-    private void driverAvailability(  String available) {
-
-        ACProgressFlower dialog = new ACProgressFlower.Builder(JobRequestActivity.this)
-                .direction(ACProgressConstant.DIRECT_CLOCKWISE)
-                .themeColor(Color.WHITE)
-                .fadeColor(Color.BLACK).build();
-        dialog.show();
 
 
-        RequestBody driverId = RequestBody.create(MediaType.parse("txt/plain"), driver_id);
-        RequestBody available_status  = RequestBody.create(MediaType.parse("txt/plain"), available);
-        //  RequestBody new_password = RequestBody.create(MediaType.parse("txt/plain"), edt_password.getText().toString().trim());
 
-
-        RestClient.getClient().DriverAvailability(driverId,available_status).enqueue(new Callback<ServerGeneralResponse>() {
-            @Override
-            public void onResponse(Call<ServerGeneralResponse> call, Response<ServerGeneralResponse> response) {
-                Log.e(TAG, "onResponse: Code :" + response.body());
-                Log.e(TAG, "onResponse: " + response.code());
-                Log.e(TAG, "onResponse: " + response.errorBody());
-
-                if(!response.body().getStatus().equals(500)){
-
-                    if (response.body().getStatus().equals(200)) {
-                        dialog.dismiss();
-
-
-                        SharedPreferences sp = getSharedPreferences(Constant.DRIVER_PREF, Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sp.edit();
-                        assert response.body() != null;
-
-                        editor.putString(Constant.DRIVER_AVAILABILITY, "no");
-                        editor.apply();
-
-                        Intent offline=new Intent(JobRequestActivity.this,OfflineActivity.class);
-                        startActivity(offline);
-                        finish();
-
-
-                    } else {
-                        dialog.dismiss();
-//
-
-                    }
-                }else{
-                    dialog.dismiss();
-                    Toast.makeText(JobRequestActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-
-            @Override
-            public void onFailure(Call<ServerGeneralResponse> call, Throwable t) {
-
-                dialog.dismiss();
-            }
-        });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        FetchJobList();
-
-    }
 }

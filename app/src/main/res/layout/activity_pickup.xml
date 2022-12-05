@@ -63,7 +63,7 @@
                 map:uiTiltGestures="true"
                 map:uiZoomControls="true"
                 map:uiZoomGestures="true"
-                tools:context=".MapScreen" />
+                tools:context=".PickupActivity" />
 
         </LinearLayout>
 

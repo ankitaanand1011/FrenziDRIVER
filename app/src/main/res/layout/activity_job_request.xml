@@ -57,11 +57,61 @@
 
         </RelativeLayout>
 
+        <LinearLayout
+            android:id="@+id/ll_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_below="@+id/onlineone"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/MidnightBlue"
+                android:padding="@dimen/_5sdp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Live Jobs"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15sdp" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/grey_base"
+                android:padding="@dimen/_5sdp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Scheduled Jobs"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/MidnightBlue"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="@dimen/_15sdp"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
         <TextView
             android:id="@+id/newrequest"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/onlineone"
+            android:layout_below="@id/ll_tab"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="5dp"
@@ -303,6 +353,7 @@
                     android:layout_height="wrap_content"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:paddingTop="8dp"
+                    android:visibility="gone"
                     android:paddingBottom="8dp">
 
                     <ImageView

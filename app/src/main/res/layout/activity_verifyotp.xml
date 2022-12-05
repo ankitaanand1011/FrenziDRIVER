@@ -65,38 +65,20 @@
             android:layout_below="@id/vyn"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
-            android:textColor="@color/Gray"
-            android:gravity="center"
-            android:text="A verification code has been sent to\nthe customer registered mobile number"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/code"
-            android:layout_centerHorizontal="true"
-            android:text="registered mobile number"
-            android:visibility="gone"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/entercode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/register"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Enter the code here"
             android:textColor="@color/DarkGray"
+            android:gravity="center"
+            android:text="A verification code has been sent to\nthe customer registered mobile number\nregistered mobile number\nEnter the code here"
             android:textSize="16sp" />
+
+
+
 
         <LinearLayout
             android:id="@+id/uniquecode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/entercode"
+
+            android:layout_below="@id/code"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
@@ -141,7 +123,7 @@
                 android:maxLength="1"
                 android:hint="*"
                 android:inputType="number"
-                android:textColor="@color/Gray"
+                android:textColor="@color/black"
                 android:textSize="25sp" />
 
             <EditText
@@ -155,7 +137,7 @@
                 android:maxEms="1"
                 android:maxLines="1"
                 android:maxLength="1"
-                android:textColor="@color/Gray"
+                android:textColor="@color/black"
                 android:textSize="25sp" />
 
 

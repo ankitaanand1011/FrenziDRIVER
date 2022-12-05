@@ -192,6 +192,7 @@
     <color name="LightSkyBlue">#87CEFA</color>
     <color name="SkyBlue">#87CEEB</color>
     <color name="Gray">#808080</color>
+    <color name="Gray1">#A5A4A4</color>
     <color name="Gray2">#e8ebf0</color>
 
     <color name="Olive">#808000</color>
@@ -227,6 +228,7 @@
     <color name="DodgerBlue">#1E90FF</color>
     <color name="MidnightBlue">#191970</color>
     <color name="ProjectBlueColor">#1B3248</color>
+    <color name="grey_base">#E4E3E3</color>
 
     <color name="Aqua">#00FFFF</color>
     <color name="Cyan">#00FFFF</color>
